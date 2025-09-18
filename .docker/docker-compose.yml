@@ -2,31 +2,31 @@ services:
 #--------------------------------
 #운영 Infra Container
 #--------------------------------
-  mysql-coupon:
-    container_name: mysql-coupon
-    image: mysql:8.0
-    environment:
-      - TZ=Asia/Seoul
-      - MYSQL_DATABASE=coupon
-      - MYSQL_ROOT_PASSWORD=3runner!23
-    volumes:
-      - ./envs/mysql/coupon/data:/var/lib/mysql
-    ports:
-      - "3307:3306"
-    restart: always
-
-  mysql-bookstore:
-    container_name: mysql-bookstore
+  mysql:
+    container_name: mysql
     image: mysql:8.0
     environment:
       - TZ=Asia/Seoul
       - MYSQL_DATABASE=bookstore
       - MYSQL_ROOT_PASSWORD=3runner!23
     volumes:
-      - ./envs/mysql/bookstore/data:/var/lib/mysql
+      - ./envs/mysql/data:/var/lib/mysql
     ports:
-      - "3308:3306"
+      - "3306:3306"
     restart: always
+
+#  mysql-bookstore:
+#    container_name: mysql-bookstore
+#    image: mysql:8.0
+#    environment:
+#      - TZ=Asia/Seoul
+#      - MYSQL_DATABASE=bookstore
+#      - MYSQL_ROOT_PASSWORD=3runner!23
+#    volumes:
+#      - ./envs/mysql/bookstore/data:/var/lib/mysql
+#    ports:
+#      - "3308:3306"
+#    restart: always
 
 
   redis:
@@ -93,7 +93,7 @@ services:
     environment:
       - TZ=Asia/Seoul
     depends_on:
-      - mysql-bookstore
+      - mysql
       - redis
       - rabbitmq
       - elasticsearch
@@ -112,7 +112,7 @@ services:
     environment:
       - TZ=Asia/Seoul
     depends_on:
-      - mysql-bookstore
+      - mysql
       - redis
       - rabbitmq
       - elasticsearch
@@ -131,7 +131,7 @@ services:
     environment:
       - TZ=Asia/Seoul
     depends_on:
-      - mysql-coupon
+      - mysql
       - redis
       - rabbitmq
     command: >
@@ -148,7 +148,7 @@ services:
     environment:
       - TZ=Asia/Seoul
     depends_on:
-      - mysql-coupon
+      - mysql
       - redis
       - rabbitmq
     command: >
@@ -165,8 +165,7 @@ services:
     environment:
       - TZ=Asia/Seoul
     depends_on:
-      - mysql-coupon
-      - mysql-bookstore
+      - mysql
       - redis
       - rabbitmq
     command: >
@@ -185,7 +184,7 @@ services:
     command: >
       bash -c "java -jar /app/auth.jar --spring.profiles.active=dev"
     depends_on:
-      - mysql-bookstore
+      - mysql
       - redis
       - rabbitmq
     network_mode: host
@@ -202,7 +201,7 @@ services:
     command: >
       bash -c "java -jar /app/gateway.jar --spring.profiles.active=dev"
     depends_on:
-      - mysql-bookstore
+      - mysql
       - redis
     network_mode: host
 

@@ -21,7 +21,6 @@ import java.util.List;
 public class CouponFormController {
     private final CouponFormService couponFormService;
 
-
     @PostMapping("/members/forms")
     public ApiResponse<List<ReadCouponFormResponse>> readCouponForm(
             @RequestBody ReadCouponFormRequest readCouponFormRequest

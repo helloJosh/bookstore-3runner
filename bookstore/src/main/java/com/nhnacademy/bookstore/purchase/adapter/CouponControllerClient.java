@@ -1,7 +1,5 @@
 package com.nhnacademy.bookstore.purchase.adapter;
 
-import com.nhnacademy.bookstore.purchase.aaaaa.dto.adapter.request.*;
-import com.nhnacademy.bookstore.purchase.aaaaa.dto.adapter.response.*;
 import com.nhnacademy.bookstore.purchase.dto.adapter.request.*;
 import com.nhnacademy.bookstore.purchase.dto.adapter.response.*;
 import com.nhnacademy.bookstore.util.ApiResponse;

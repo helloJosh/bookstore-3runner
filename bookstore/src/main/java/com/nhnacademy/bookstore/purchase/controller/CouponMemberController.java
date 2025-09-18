@@ -44,7 +44,10 @@ public class CouponMemberController {
             @RequestHeader("Member-Id") Long memberId,
             @RequestBody CouponRegistorRequest couponRegistorRequest) {
 
-        return ApiResponse.success(couponMemberService.registorCoupon(couponRegistorRequest.code(), memberId));
+        return ApiResponse.success(
+                couponMemberService.registorCoupon(
+                        couponRegistorRequest.code(), memberId)
+        );
     }
 
     /**
