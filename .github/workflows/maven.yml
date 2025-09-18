@@ -1,0 +1,296 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "1.0.x" , "develop"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0 # 모든 Git 내역 가져오기
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'adopt'
+        cache: maven
+
+    - name: Build with Maven
+      run: mvn -B package -DskipTests -P dev --file pom.xml
+
+    - name: Get changed files
+      id: changed-files-between-commit
+      uses: tj-actions/changed-files@v44
+      with:
+        since_last_remote_commit: 'true'
+
+    - name: Debug changed files
+      run: |
+        echo "All Changed Files: ${{ steps.changed-files-between-commit.outputs.all_changed_and_modified_files }}"
+
+    #####################
+    # EUREKA
+    #####################
+    - name: upload eureka jar
+      if: contains(steps.changed.outputs.all_modified_files, 'eureka/src') || contains(steps.changed.outputs.all_modified_files, 'eureka/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "eureka/target/*.jar"
+        target: "/bookstore-3runner/eureka"
+        strip_components: 2
+        rm: false
+
+    - name: restart eureka with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'eureka/src') || contains(steps.changed.outputs.all_modified_files, 'eureka/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/eureka/eureka-retstart.sh"
+
+    #####################
+    # GATEWAY
+    #####################
+    - name: upload gateway jar
+      if: contains(steps.changed.outputs.all_modified_files, 'gateway/src') || contains(steps.changed.outputs.all_modified_files, 'gateway/pom.xml') || contains(steps.changed.outputs.all_modified_files, 'gateway/src/main/resources')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "gateway/target/*.jar"
+        target: "bookstore-3runner/gateway"
+        strip_components: 2
+        rm: false
+
+    - name: restart gateway with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'gateway/src') || contains(steps.changed.outputs.all_modified_files, 'gateway/pom.xml') || contains(steps.changed.outputs.all_modified_files, 'gateway/src/main/resources')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/gateway/gateway-retstart.sh"
+
+      #####################
+      # FRONT 1
+      #####################
+    - name: upload front jar (for front1/2)
+      if: contains(steps.changed.outputs.all_modified_files, 'front/src') || contains(steps.changed.outputs.all_modified_files, 'front/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "front/target/*.jar"
+        target: "/bookstore-3runner/front1"
+        strip_components: 2
+        rm: false
+
+    - name: restart front1 with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'front/src') || contains(steps.changed.outputs.all_modified_files, 'front/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/front1/front1-retstart.sh"
+
+
+      #####################
+      # BOOKSTORE 1
+      #####################
+    - name: upload bookstore jar (for bookstore1)
+      if: contains(steps.changed.outputs.all_modified_files, 'bookstore/src') || contains(steps.changed.outputs.all_modified_files, 'bookstore/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "bookstore/target/*.jar"
+        target: "/bookstore-3runner/bookstore1"
+        strip_components: 2
+        rm: false
+
+    - name: restart bookstore1 with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'bookstore/src') || contains(steps.changed.outputs.all_modified_files, 'bookstore/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/bookstore1/bookstore1-retstart.sh"
+
+      #####################
+      # COUPON 1
+      #####################
+    - name: upload coupon jar (for coupon1/2)
+      if: contains(steps.changed.outputs.all_modified_files, 'coupon/src') || contains(steps.changed.outputs.all_modified_files, 'coupon/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "coupon/target/*.jar"
+        target: "/bookstore-3runner/coupon1"
+        strip_components: 2
+        rm: false
+
+    - name: restart coupon1 with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'coupon/src') || contains(steps.changed.outputs.all_modified_files, 'coupon/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/coupon1/coupon1-retstart.sh"
+
+
+      #####################
+      # AUTH
+      #####################
+    - name: upload auth jar
+      if: contains(steps.changed.outputs.all_modified_files, 'auth/src') || contains(steps.changed.outputs.all_modified_files, 'auth/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "auth/target/*.jar"
+        target: "/bookstore-3runner/auth"
+        strip_components: 2
+        rm: false
+
+    - name: restart auth with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'auth/src') || contains(steps.changed.outputs.all_modified_files, 'auth/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/auth/auth-restart.sh"
+
+    #####################
+    # BATCH
+    #####################
+    - name: upload batch jar
+      if: contains(steps.changed.outputs.all_modified_files, 'batch/src') || contains(steps.changed.outputs.all_modified_files, 'batch/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "batch/target/*.jar"
+        target: "/bookstore-3runner/batch"
+        strip_components: 2
+        rm: false
+
+    - name: restart batch with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'batch/src') || contains(steps.changed.outputs.all_modified_files, 'batch/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/batch/batch-retstart.sh"
+
+    #####################
+    # BOOKSTORE 2
+    #####################
+    - name: upload bookstore2 jar (for bookstore2)
+      if: contains(steps.changed.outputs.all_modified_files, 'bookstore/src') || contains(steps.changed.outputs.all_modified_files, 'bookstore/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "bookstore/target/*.jar"
+        target: "/bookstore-3runner/bookstore2"
+        strip_components: 2
+        rm: false
+
+    - name: restart bookstore2 with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'bookstore/src') || contains(steps.changed.outputs.all_modified_files, 'bookstore/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/bookstore2/bookstore2-retstart.sh"
+
+    #####################
+    # COUPON 2
+    #####################
+    - name: upload coupon2 jar (for coupon1/2)
+      if: contains(steps.changed.outputs.all_modified_files, 'coupon/src') || contains(steps.changed.outputs.all_modified_files, 'coupon/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "coupon/target/*.jar"
+        target: "/bookstore-3runner/coupon2"
+        strip_components: 2
+        rm: false
+
+    - name: restart coupon2 with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'coupon/src') || contains(steps.changed.outputs.all_modified_files, 'coupon/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/coupon2/coupon2-retstart.sh"
+
+    #####################
+    # FRONT 2
+    #####################
+    - name: upload front jar (for front1/2)
+      if: contains(steps.changed.outputs.all_modified_files, 'front/src') || contains(steps.changed.outputs.all_modified_files, 'front/pom.xml')
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: "front/target/*.jar"
+        target: "/bookstore-3runner/front2"
+        strip_components: 2
+        rm: false
+
+    - name: restart front1 with docker-compose
+      if: contains(steps.changed.outputs.all_modified_files, 'front/src') || contains(steps.changed.outputs.all_modified_files, 'front/pom.xml')
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: "bash /bookstore-3runner/.docker/script/front2/front2-retstart.sh"
