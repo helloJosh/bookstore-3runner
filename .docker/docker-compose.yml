@@ -2,26 +2,40 @@ services:
 #--------------------------------
 #운영 Infra Container
 #--------------------------------
-  mysql:
-    container_name: mysql
+  mysql-coupon:
+    container_name: mysql-coupon
     image: mysql:8.0
     environment:
       - TZ=Asia/Seoul
-      - MYSQL_DATABASE=testdb
-      - MYSQL_ROOT_PASSWORD=root!2345
+      - MYSQL_DATABASE=coupon
+      - MYSQL_ROOT_PASSWORD=3runner!23
     volumes:
-      - ./envs/mysql/data:/var/lib/mysql
+      - ./envs/mysql/coupon/data:/var/lib/mysql
     ports:
-      - 9306:3306
+      - "3307:3306"
     restart: always
+
+  mysql-bookstore:
+    container_name: mysql-bookstore
+    image: mysql:8.0
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_DATABASE=bookstore
+      - MYSQL_ROOT_PASSWORD=3runner!23
+    volumes:
+      - ./envs/mysql/bookstore/data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+    restart: always
+
 
   redis:
     container_name: redis
     image: redis:latest
     restart: always
     ports:
-      - "9005:6379"
-    command: redis-server --requirepass amberroad!23
+      - "6379:6379"
+    command: redis-server --requirepass 3runner!23
     volumes:
       - ./envs/infra/redis/redis_data:/data
 
@@ -33,8 +47,8 @@ services:
       - "15672:15672"  # RabbitMQ 관리 UI 포트
       - "5672:5672"    # AMQP 기본 포트
     environment:
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=amberroad!23
+      - RABBITMQ_DEFAULT_USER=3runner
+      - RABBITMQ_DEFAULT_PASS=3runner!23
       - TZ=Asia/Seoul
     volumes:
       - ./envs/infra/rabbitmq/data:/var/lib/rabbitmq

@@ -4,7 +4,7 @@ server:
 
 eureka:
   instance:
-    hostname: 133.186.143.40
+    hostname: localhost
 
 spring:
   lifecycle:
