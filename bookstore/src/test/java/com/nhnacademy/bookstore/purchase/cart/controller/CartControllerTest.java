@@ -1,7 +1,8 @@
 package com.nhnacademy.bookstore.purchase.cart.controller;
 
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.cart.service.CartService;
+import com.nhnacademy.bookstore.purchase.service.CartService;
+import com.nhnacademy.bookstore.purchase.controller.CartController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

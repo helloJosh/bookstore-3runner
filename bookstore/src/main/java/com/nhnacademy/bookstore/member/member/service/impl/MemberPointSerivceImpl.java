@@ -8,8 +8,8 @@ import com.nhnacademy.bookstore.member.member.exception.MemberNotExistsException
 import com.nhnacademy.bookstore.member.member.repository.MemberRepository;
 import com.nhnacademy.bookstore.member.member.service.MemberPointService;
 import com.nhnacademy.bookstore.member.pointrecord.repository.PointRecordRepository;
-import com.nhnacademy.bookstore.purchase.pointpolicy.exception.PointPolicyDoesNotExistException;
-import com.nhnacademy.bookstore.purchase.pointpolicy.repository.PointPolicyRepository;
+import com.nhnacademy.bookstore.purchase.exception.PointPolicyDoesNotExistException;
+import com.nhnacademy.bookstore.purchase.repository.PointPolicyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

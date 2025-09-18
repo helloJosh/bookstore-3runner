@@ -2,9 +2,10 @@ package com.nhnacademy.bookstore.purchase.membermessage.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.membermessage.dto.ReadMemberMessageResponse;
-import com.nhnacademy.bookstore.purchase.membermessage.dto.UpdateMemberMessageRequest;
-import com.nhnacademy.bookstore.purchase.membermessage.service.MemberMessageService;
+import com.nhnacademy.bookstore.purchase.controller.MemberMessageController;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadMemberMessageResponse;
+import com.nhnacademy.bookstore.purchase.dto.request.UpdateMemberMessageRequest;
+import com.nhnacademy.bookstore.purchase.service.MemberMessageService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

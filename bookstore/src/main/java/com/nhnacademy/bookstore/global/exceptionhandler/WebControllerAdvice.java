@@ -25,17 +25,17 @@ import com.nhnacademy.bookstore.member.address.exception.AddressNotExistsExcepti
 import com.nhnacademy.bookstore.member.member.exception.AlreadyExistsEmailException;
 import com.nhnacademy.bookstore.member.member.exception.LoginFailException;
 import com.nhnacademy.bookstore.member.member.exception.MemberNotExistsException;
-import com.nhnacademy.bookstore.purchase.bookcart.exception.BookCartArgumentErrorException;
-import com.nhnacademy.bookstore.purchase.payment.exception.TossPaymentException;
-import com.nhnacademy.bookstore.purchase.purchase.exception.PurchaseAlreadyExistException;
-import com.nhnacademy.bookstore.purchase.purchase.exception.PurchaseDoesNotExistException;
-import com.nhnacademy.bookstore.purchase.purchase.exception.PurchaseFormArgumentErrorException;
-import com.nhnacademy.bookstore.purchase.purchase.exception.PurchaseNoAuthorizationException;
-import com.nhnacademy.bookstore.purchase.purchasebook.exception.ImPossibleAccessPurchaseBookException;
-import com.nhnacademy.bookstore.purchase.refund.exception.CreateRefundRequestFormException;
-import com.nhnacademy.bookstore.purchase.refund.exception.ImpossibleAccessRefundException;
-import com.nhnacademy.bookstore.purchase.refund.exception.NotExistsRefund;
-import com.nhnacademy.bookstore.purchase.refund.exception.NotExistsRefundRecord;
+import com.nhnacademy.bookstore.purchase.exception.BookCartArgumentErrorException;
+import com.nhnacademy.bookstore.purchase.exception.TossPaymentException;
+import com.nhnacademy.bookstore.purchase.exception.PurchaseAlreadyExistException;
+import com.nhnacademy.bookstore.purchase.exception.PurchaseDoesNotExistException;
+import com.nhnacademy.bookstore.purchase.exception.PurchaseFormArgumentErrorException;
+import com.nhnacademy.bookstore.purchase.exception.PurchaseNoAuthorizationException;
+import com.nhnacademy.bookstore.purchase.exception.ImPossibleAccessPurchaseBookException;
+import com.nhnacademy.bookstore.purchase.exception.CreateRefundRequestFormException;
+import com.nhnacademy.bookstore.purchase.exception.ImpossibleAccessRefundException;
+import com.nhnacademy.bookstore.purchase.exception.NotExistsRefund;
+import com.nhnacademy.bookstore.purchase.exception.NotExistsRefundRecord;
 import com.nhnacademy.bookstore.util.ApiResponse;
 
 /**

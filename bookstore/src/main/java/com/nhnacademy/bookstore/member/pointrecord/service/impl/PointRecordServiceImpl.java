@@ -10,8 +10,8 @@ import com.nhnacademy.bookstore.member.pointrecord.dto.response.ReadPointRecordR
 import com.nhnacademy.bookstore.member.pointrecord.exception.NoBuyPointRecordException;
 import com.nhnacademy.bookstore.member.pointrecord.repository.PointRecordRepository;
 import com.nhnacademy.bookstore.member.pointrecord.service.PointRecordService;
-import com.nhnacademy.bookstore.purchase.purchase.exception.PurchaseDoesNotExistException;
-import com.nhnacademy.bookstore.purchase.purchase.repository.PurchaseRepository;
+import com.nhnacademy.bookstore.purchase.exception.PurchaseDoesNotExistException;
+import com.nhnacademy.bookstore.purchase.repository.PurchaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

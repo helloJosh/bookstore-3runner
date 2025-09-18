@@ -2,10 +2,10 @@ package com.nhnacademy.bookstore.refundRecord.controller;
 
 import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.purchasebook.dto.response.ReadBookByPurchase;
-import com.nhnacademy.bookstore.purchase.refundrecord.controller.RefundRecordGuestController;
-import com.nhnacademy.bookstore.purchase.refundrecord.dto.request.CreateRefundRecordRedisRequest;
-import com.nhnacademy.bookstore.purchase.refundrecord.service.RefundRecordGuestService;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadBookByPurchase;
+import com.nhnacademy.bookstore.purchase.controller.RefundRecordGuestController;
+import com.nhnacademy.bookstore.purchase.dto.request.CreateRefundRecordRedisRequest;
+import com.nhnacademy.bookstore.purchase.service.RefundRecordGuestService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,6 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.*;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

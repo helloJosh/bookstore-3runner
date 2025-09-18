@@ -2,8 +2,9 @@ package com.nhnacademy.bookstore.purchase.pointpolicy.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.pointpolicy.dto.PointPolicyResponseRequest;
-import com.nhnacademy.bookstore.purchase.pointpolicy.service.PointPolicyService;
+import com.nhnacademy.bookstore.purchase.controller.PointPolicyController;
+import com.nhnacademy.bookstore.purchase.dto.request.PointPolicyResponseRequest;
+import com.nhnacademy.bookstore.purchase.service.PointPolicyService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

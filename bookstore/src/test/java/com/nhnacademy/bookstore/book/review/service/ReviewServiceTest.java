@@ -27,8 +27,8 @@ import com.nhnacademy.bookstore.member.member.exception.MemberNotExistsException
 import com.nhnacademy.bookstore.member.member.repository.MemberRepository;
 import com.nhnacademy.bookstore.member.member.service.MemberPointService;
 import com.nhnacademy.bookstore.member.pointrecord.repository.PointRecordRepository;
-import com.nhnacademy.bookstore.purchase.purchase.exception.PurchaseDoesNotExistException;
-import com.nhnacademy.bookstore.purchase.purchasebook.repository.PurchaseBookRepository;
+import com.nhnacademy.bookstore.purchase.exception.PurchaseDoesNotExistException;
+import com.nhnacademy.bookstore.purchase.repository.PurchaseBookRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

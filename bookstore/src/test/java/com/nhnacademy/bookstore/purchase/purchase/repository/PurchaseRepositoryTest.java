@@ -4,6 +4,7 @@ import com.nhnacademy.bookstore.entity.member.Member;
 import com.nhnacademy.bookstore.entity.purchase.Purchase;
 import com.nhnacademy.bookstore.entity.purchase.enums.MemberType;
 import com.nhnacademy.bookstore.entity.purchase.enums.PurchaseStatus;
+import com.nhnacademy.bookstore.purchase.repository.PurchaseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

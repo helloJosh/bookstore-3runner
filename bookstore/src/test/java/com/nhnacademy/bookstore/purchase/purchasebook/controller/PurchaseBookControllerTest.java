@@ -2,11 +2,12 @@ package com.nhnacademy.bookstore.purchase.purchasebook.controller;
 
 import com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper;
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.purchasebook.dto.request.CreatePurchaseBookRequest;
-import com.nhnacademy.bookstore.purchase.purchasebook.dto.request.UpdatePurchaseBookRequest;
-import com.nhnacademy.bookstore.purchase.purchasebook.dto.response.ReadBookByPurchase;
-import com.nhnacademy.bookstore.purchase.purchasebook.dto.response.ReadPurchaseBookResponse;
-import com.nhnacademy.bookstore.purchase.purchasebook.service.PurchaseBookService;
+import com.nhnacademy.bookstore.purchase.controller.PurchaseBookController;
+import com.nhnacademy.bookstore.purchase.dto.request.CreatePurchaseBookRequest;
+import com.nhnacademy.bookstore.purchase.dto.request.UpdatePurchaseBookRequest;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadBookByPurchase;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadPurchaseBookResponse;
+import com.nhnacademy.bookstore.purchase.service.PurchaseBookService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

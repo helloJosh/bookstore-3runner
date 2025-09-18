@@ -1,8 +1,8 @@
 package com.nhnacademy.bookstore.refundRecord.reposiotry.impl;
 
-import com.nhnacademy.bookstore.purchase.refundrecord.dto.response.ReadRefundRecordResponse;
-import com.nhnacademy.bookstore.purchase.refundrecord.exception.NotExistsRefundRecordRedis;
-import com.nhnacademy.bookstore.purchase.refundrecord.repository.impl.RefundRecordRedisRepositoryImpl;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadRefundRecordResponse;
+import com.nhnacademy.bookstore.purchase.exception.NotExistsRefundRecordRedis;
+import com.nhnacademy.bookstore.purchase.repository.RefundRecordRedisRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

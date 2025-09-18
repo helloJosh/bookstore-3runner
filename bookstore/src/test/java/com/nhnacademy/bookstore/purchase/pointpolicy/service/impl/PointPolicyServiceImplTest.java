@@ -1,8 +1,9 @@
 package com.nhnacademy.bookstore.purchase.pointpolicy.service.impl;
 
 import com.nhnacademy.bookstore.entity.pointpolicy.PointPolicy;
-import com.nhnacademy.bookstore.purchase.pointpolicy.dto.PointPolicyResponseRequest;
-import com.nhnacademy.bookstore.purchase.pointpolicy.repository.PointPolicyRepository;
+import com.nhnacademy.bookstore.purchase.dto.request.PointPolicyResponseRequest;
+import com.nhnacademy.bookstore.purchase.repository.PointPolicyRepository;
+import com.nhnacademy.bookstore.purchase.service.PointPolicyServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

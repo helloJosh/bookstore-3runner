@@ -1,14 +1,15 @@
 package com.nhnacademy.bookstore.purchase.bookcart.controller;
 
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.bookcart.dto.request.CreateBookCartRequest;
-import com.nhnacademy.bookstore.purchase.bookcart.dto.request.DeleteBookCartRequest;
-import com.nhnacademy.bookstore.purchase.bookcart.dto.request.ReadAllBookCartMemberRequest;
-import com.nhnacademy.bookstore.purchase.bookcart.dto.request.UpdateBookCartRequest;
-import com.nhnacademy.bookstore.purchase.bookcart.dto.response.ReadAllBookCartMemberResponse;
-import com.nhnacademy.bookstore.purchase.bookcart.dto.response.ReadBookCartGuestResponse;
-import com.nhnacademy.bookstore.purchase.bookcart.service.BookCartGuestService;
-import com.nhnacademy.bookstore.purchase.bookcart.service.BookCartMemberService;
+import com.nhnacademy.bookstore.purchase.dto.request.CreateBookCartRequest;
+import com.nhnacademy.bookstore.purchase.dto.request.DeleteBookCartRequest;
+import com.nhnacademy.bookstore.purchase.dto.request.ReadAllBookCartMemberRequest;
+import com.nhnacademy.bookstore.purchase.dto.request.UpdateBookCartRequest;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadAllBookCartMemberResponse;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadBookCartGuestResponse;
+import com.nhnacademy.bookstore.purchase.service.BookCartGuestService;
+import com.nhnacademy.bookstore.purchase.service.BookCartMemberService;
+import com.nhnacademy.bookstore.purchase.controller.BookCartController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

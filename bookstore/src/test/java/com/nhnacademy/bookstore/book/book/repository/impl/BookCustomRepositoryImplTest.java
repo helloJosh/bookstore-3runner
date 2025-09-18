@@ -14,7 +14,7 @@ import com.nhnacademy.bookstore.entity.bookimage.BookImage;
 import com.nhnacademy.bookstore.entity.bookimage.enums.BookImageType;
 import com.nhnacademy.bookstore.entity.category.Category;
 import com.nhnacademy.bookstore.entity.totalimage.TotalImage;
-import com.nhnacademy.bookstore.purchase.purchasebook.exception.NotExistsBook;
+import com.nhnacademy.bookstore.purchase.exception.NotExistsBook;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,9 +2,10 @@ package com.nhnacademy.bookstore.purchase.purchasecoupon.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.purchasecoupon.dto.response.ReadPurchaseCouponDetailResponse;
-import com.nhnacademy.bookstore.purchase.purchasecoupon.dto.response.ReadPurchaseCouponResponse;
-import com.nhnacademy.bookstore.purchase.purchasecoupon.service.PurchaseCouponService;
+import com.nhnacademy.bookstore.purchase.controller.PurchaseCouponController;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadPurchaseCouponDetailResponse;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadPurchaseCouponResponse;
+import com.nhnacademy.bookstore.purchase.service.PurchaseCouponService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

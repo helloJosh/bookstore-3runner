@@ -1,9 +1,10 @@
 package com.nhnacademy.bookstore.purchase.coupon.controller;
 
 import com.nhnacademy.bookstore.BaseDocumentTest;
-import com.nhnacademy.bookstore.purchase.coupon.dto.CouponRegistorRequest;
-import com.nhnacademy.bookstore.purchase.coupon.feign.dto.response.ReadCouponFormResponse;
-import com.nhnacademy.bookstore.purchase.coupon.service.CouponMemberService;
+import com.nhnacademy.bookstore.purchase.controller.CouponMemberController;
+import com.nhnacademy.bookstore.purchase.dto.request.CouponRegistorRequest;
+import com.nhnacademy.bookstore.purchase.dto.adapter.response.ReadCouponFormResponse;
+import com.nhnacademy.bookstore.purchase.service.CouponMemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -13,7 +13,7 @@ import com.nhnacademy.bookstore.member.member.dto.request.UpdateMemberRequest;
 import com.nhnacademy.bookstore.member.member.dto.request.UpdatePasswordRequest;
 import com.nhnacademy.bookstore.member.member.dto.request.UserProfile;
 import com.nhnacademy.bookstore.member.memberauth.dto.response.MemberAuthResponse;
-import com.nhnacademy.bookstore.purchase.purchase.dto.response.ReadPurchaseResponse;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadPurchaseResponse;
 
 @Service
 public interface MemberService {
