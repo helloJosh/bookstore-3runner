@@ -33,4 +33,7 @@ build/
 .vscode/
 .docker/envs
 .docker/app
+.docker/monitor/grafana
+.docker/monitor/prometheus
+.docker/monitor/var
 .DS_store
