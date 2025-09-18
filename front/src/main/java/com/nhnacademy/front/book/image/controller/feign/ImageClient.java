@@ -22,7 +22,9 @@ public interface ImageClient {
 	 *  @return 저장한 이미지의 파일 이름
 	 */
 	@PostMapping(value = "/{type}/upload", consumes = "multipart/form-data")
-	ApiResponse<String> uploadImage(@RequestBody MultipartFile image, @PathVariable String type);
+	ApiResponse<String> uploadImage (
+			@RequestBody MultipartFile image,
+			@PathVariable("type") String type);
 
 	/**
 	 *  bookstore 에서 이미지 가져오기.
@@ -32,5 +34,7 @@ public interface ImageClient {
 	 *  @return 이미지 파일
 	 */
 	@GetMapping(value = "/{type}/download")
-	ResponseEntity<byte[]> downloadFile(@RequestParam("fileName") String fileName, @PathVariable String type);
+	ResponseEntity<byte[]> downloadFile(
+			@RequestParam("fileName") String fileName,
+			@PathVariable("type") String type);
 }

@@ -21,32 +21,48 @@ import java.util.List;
 @FeignClient(name = "CouponPolicyControllerClient", url = "${feign.client.url}", configuration = FeignConfiguration.class)
 public interface CouponPolicyControllerClient {
 	@PostMapping("/coupon/types/fixes")
-	ApiResponse<Long> createFixedCouponPolicy(@RequestBody CreateFixedCouponRequest createFixedCouponRequest);
+	ApiResponse<Long> createFixedCouponPolicy (
+			@RequestBody CreateFixedCouponRequest createFixedCouponRequest
+	);
 
 	@PostMapping("/coupon/types/ratios")
-	ApiResponse<Long> createRatioCouponPolicy(@RequestBody CreateRatioCouponRequest createRatioCouponRequest);
+	ApiResponse<Long> createRatioCouponPolicy (
+			@RequestBody CreateRatioCouponRequest createRatioCouponRequest
+	);
 
 	@PostMapping("/coupon/usages/categories")
-	ApiResponse<Long> createCategoryCouponPolicy(@RequestBody CreateCategoryCouponRequest createCategoryCouponRequest);
+	ApiResponse<Long> createCategoryCouponPolicy (
+			@RequestBody CreateCategoryCouponRequest createCategoryCouponRequest
+	);
 
 	@PostMapping("/coupon/usages/books")
-	ApiResponse<Long> createBookCouponPolicy(@RequestBody CreateBookCouponRequest createBookCouponRequest);
+	ApiResponse<Long> createBookCouponPolicy (
+			@RequestBody CreateBookCouponRequest createBookCouponRequest
+	);
 
 	@GetMapping("/coupon/types")
 	ApiResponse<List<ReadCouponTypeResponse>> readAllTypes();
 
 	@GetMapping("/coupon/types/fixes/{couponTypeId}")
-	ApiResponse<ReadFixedCouponResponse> readFixedType(@PathVariable Long couponTypeId);
+	ApiResponse<ReadFixedCouponResponse> readFixedType (
+			@PathVariable("couponTypeId") Long couponTypeId
+	);
 
 	@GetMapping("/coupon/types/ratios/{couponTypeId}")
-	ApiResponse<ReadRatioCouponResponse> readRatioType(@PathVariable Long couponTypeId);
+	ApiResponse<ReadRatioCouponResponse> readRatioType(
+			@PathVariable("couponTypeId") Long couponTypeId
+	);
 
 	@GetMapping("/coupon/usages")
 	ApiResponse<List<ReadCouponUsageResponse>> readAllUsages();
 
 	@GetMapping("/coupon/usages/categories/{couponTypeId}")
-	ApiResponse<List<Long>> readCategoryUsages(@PathVariable Long couponTypeId);
+	ApiResponse<List<Long>> readCategoryUsages(
+			@PathVariable("couponTypeId") Long couponTypeId
+	);
 
 	@GetMapping("/coupon/usages/books/{couponTypeId}")
-	ApiResponse<List<Long>> readBookUsages(@PathVariable Long couponTypeId);
+	ApiResponse<List<Long>> readBookUsages(
+			@PathVariable ("couponTypeId")Long couponTypeId
+	);
 }

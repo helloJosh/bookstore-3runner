@@ -14,12 +14,16 @@ import java.util.List;
 @FeignClient(name = "CouponMemberControllerClient2", url = "${feign.client.url}")
 public interface CouponRegisterControllerClient {
 	@PostMapping("/bookstore/members/coupons")
-	ApiResponse<Long> registerCoupon(@RequestBody CouponRegistorRequest couponRegistorRequest);
+	ApiResponse<Long> registerCoupon(
+			@RequestBody CouponRegistorRequest couponRegistorRequest
+	);
 
 	@GetMapping("/bookstore/members/coupons")
 	ApiResponse<List<ReadCouponFormResponse>> readCoupons();
 
 	@PostMapping("/bookstore/members/coupons/books/{bookId}")
-	ApiResponse<Boolean> registerCouponBook(@PathVariable Long bookId);
+	ApiResponse<Boolean> registerCouponBook(
+			@PathVariable("bookId") Long bookId
+	);
 
 }

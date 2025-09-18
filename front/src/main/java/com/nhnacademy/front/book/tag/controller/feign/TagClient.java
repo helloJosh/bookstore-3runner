@@ -22,12 +22,18 @@ public interface TagClient {
 	ApiResponse<List<TagResponse>> readAllTagSet();
 
 	@GetMapping("/admin")
-	ApiResponse<Page<TagResponse>> readAllAdminTags(@RequestParam("page") int page,
-		@RequestParam("size") int size);
+	ApiResponse<Page<TagResponse>> readAllAdminTags(
+			@RequestParam("page") int page,
+			@RequestParam("size") int size
+	);
 
 	@PostMapping
-	ApiResponse<Void> createTage(@RequestParam String name);
+	ApiResponse<Void> createTage(
+			@RequestParam("name") String name
+	);
 
 	@DeleteMapping
-	ApiResponse<Void> deleteTage(@RequestParam Long tagId);
+	ApiResponse<Void> deleteTage(
+			@RequestParam("tagId") Long tagId
+	);
 }

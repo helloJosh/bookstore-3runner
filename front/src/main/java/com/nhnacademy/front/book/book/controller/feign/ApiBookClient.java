@@ -18,6 +18,6 @@ public interface ApiBookClient {
 	 * @return 성공 코드
 	 */
 	@GetMapping("/{isbnId}")
-	ApiResponse<Void> createApiBook(@PathVariable String isbnId);
+	ApiResponse<Void> createApiBook(@PathVariable(value = "isbnId") String isbnId);
 
 }

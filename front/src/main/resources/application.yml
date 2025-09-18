@@ -1,13 +1,11 @@
+server:
+  port: 3000
+
 spring:
   application:
     name: 3runner-front
-
-  data:
-    redis:
-      host: 133.186.241.167
-      port: 6379
-      database: 11
-      password: "*N2vya7H@muDTwdNMR!"
+  profiles:
+    active: local
 
   security:
     oauth2:
@@ -31,8 +29,6 @@ spring:
       max-file-size: 20MB
       max-request-size: 20MB
 
-  profiles:
-    active: prod
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -40,12 +36,6 @@ spring:
 
   jwt:
     secret: aaaasqwlkljlfasdfqwerafcxvzpojijoijopjewndllllllsserrrrrrwqexc
-
-  rabbitmq:
-    host: 133.186.241.167
-    port: 5672
-    username: admin
-    password: nhnacademy123!
 
   cloud:
     openfeign:
@@ -62,7 +52,6 @@ spring:
       min-idle: 3
       test-on-borrow: true
       validation-query: SELECT 1
-
 
 springdoc:
   swagger-ui:

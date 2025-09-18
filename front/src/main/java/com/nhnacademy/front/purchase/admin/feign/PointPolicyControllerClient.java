@@ -15,11 +15,15 @@ import java.util.List;
 public interface PointPolicyControllerClient {
 
 	@PostMapping("/bookstore/points/policies")
-	ApiResponse<Long> saveOrUpdatePolicy(@RequestBody PointPolicyResponseRequest pointPolicyResponseRequest);
+	ApiResponse<Long> saveOrUpdatePolicy(
+			@RequestBody PointPolicyResponseRequest pointPolicyResponseRequest
+	);
 
 	@GetMapping("/bookstore/points/policies")
 	ApiResponse<List<PointPolicyResponseRequest>> readPolicy();
 
 	@GetMapping("/bookstore/points/policies/{policyKey}")
-	ApiResponse<PointPolicyResponseRequest> readOne(@PathVariable String policyKey);
+	ApiResponse<PointPolicyResponseRequest> readOne(
+			@PathVariable("policyKey") String policyKey
+	);
 }

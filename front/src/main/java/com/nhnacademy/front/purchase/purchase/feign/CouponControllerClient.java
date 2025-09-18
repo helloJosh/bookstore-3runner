@@ -15,12 +15,16 @@ import java.util.List;
 public interface CouponControllerClient {
 
 	@GetMapping("/bookstore/purchases/{purchaseId}/coupons")
-	ApiResponse<List<ReadPurchaseCouponResponse>> readPurchaseCoupon(@PathVariable Long purchaseId);
+	ApiResponse<List<ReadPurchaseCouponResponse>> readPurchaseCoupon(
+			@PathVariable("purchaseId") Long purchaseId
+	);
 
 	@PostMapping("/bookstore/purchases/{purchaseId}/coupons/{couponId}")
-	ApiResponse<Long> createPurchaseCoupon(@PathVariable Long purchaseId,
-		@PathVariable Long couponId,
-		@RequestBody Integer discountPrice);
+	ApiResponse<Long> createPurchaseCoupon(
+			@PathVariable("purchaseId")  Long purchaseId,
+			@PathVariable("couponId")  Long couponId,
+			@RequestBody Integer discountPrice
+	);
 
 	@GetMapping("/bookstore/members/coupons")
 	ApiResponse<List<ReadCouponFormResponse>> readCoupons();
