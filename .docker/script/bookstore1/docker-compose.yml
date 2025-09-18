@@ -8,12 +8,12 @@ services:
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
-    command: >
-      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
     depends_on:
       - mysql-bookstore
       - redis
       - rabbitmq
       - elasticsearch
       - kibana
+    command: >
+      bash -c "java -jar /app/bookstore.jar --spring.profiles.active=dev"
     network_mode: host

@@ -92,22 +92,22 @@ services:
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
-    command: >
-      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
     depends_on:
       - mysql-bookstore
       - redis
       - rabbitmq
       - elasticsearch
       - kibana
+    command: >
+      bash -c "java -jar /app/bookstore.jar --spring.profiles.active=dev"
     network_mode: host
 
   app-bookstore2:
     image: openjdk:21
     container_name: app-bookstore2
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/bookstore2/config:/config
+      - ./script/bookstore2/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
@@ -118,15 +118,15 @@ services:
       - elasticsearch
       - kibana
     command: >
-      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+      bash -c "java -jar /app/bookstore.jar --spring.profiles.active=dev"
     network_mode: host
 
   app-coupon1:
     image: openjdk:21
     container_name: app-coupon1
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/coupon1/config:/config
+      - ./script/coupon1/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
@@ -134,8 +134,6 @@ services:
       - mysql-coupon
       - redis
       - rabbitmq
-      - elasticsearch
-      - kibana
     command: >
       bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
     network_mode: host
@@ -144,8 +142,8 @@ services:
     image: openjdk:21
     container_name: app-coupon2
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/coupon2/config:/config
+      - ./script/coupon2/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
@@ -153,8 +151,6 @@ services:
       - mysql-coupon
       - redis
       - rabbitmq
-      - elasticsearch
-      - kibana
     command: >
       bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
     network_mode: host
@@ -163,8 +159,8 @@ services:
     image: openjdk:21
     container_name: app-batch
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/batch/config:/config
+      - ./script/batch/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
@@ -181,13 +177,13 @@ services:
     image: openjdk:21
     container_name: app-auth
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/auth/config:/config
+      - ./script/auth/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
     command: >
-      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+      bash -c "java -jar /app/auth.jar --spring.profiles.active=dev"
     depends_on:
       - mysql-bookstore
       - redis
@@ -198,13 +194,13 @@ services:
     image: openjdk:21
     container_name: app-gateway
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/gateway/config:/config
+      - ./script/gateway/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
     command: >
-      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+      bash -c "java -jar /app/gateway.jar --spring.profiles.active=dev"
     depends_on:
       - mysql-bookstore
       - redis
@@ -214,8 +210,8 @@ services:
     image: openjdk:21
     container_name: app-eureka
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/eureka/config:/config
+      - ./script/eureka/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
@@ -223,4 +219,37 @@ services:
       - redis
     command: >
       bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    network_mode: host
+
+
+  app-front1:
+    image: openjdk:21
+    container_name: app-front1
+    volumes:
+      - ./script/front1/config:/config
+      - ./script/front2/app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - redis
+      - rabbitmq
+    command: >
+      bash -c "java -jar /app/front.jar --spring.profiles.active=dev"
+    network_mode: host
+
+  app-front2:
+    image: openjdk:21
+    container_name: app-front2
+    volumes:
+      - ./script/front1/config:/config
+      - ./script/front2/app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - redis
+      - rabbitmq
+    command: >
+      bash -c "java -jar /app/front.jar --spring.profiles.active=dev"
     network_mode: host

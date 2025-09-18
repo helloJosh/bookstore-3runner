@@ -1,0 +1,16 @@
+services:
+  app-front1:
+    image: openjdk:21
+    container_name: app-front1
+    volumes:
+      - ./script/front1/config:/config
+      - ./script/front2/app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - redis
+      - rabbitmq
+    command: >
+      bash -c "java -jar /app/front.jar --spring.profiles.active=dev"
+    network_mode: host

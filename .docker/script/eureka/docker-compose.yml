@@ -3,8 +3,8 @@ services:
     image: openjdk:21
     container_name: app-eureka
     volumes:
-      - ./app/config:/config
-      - ./app:/app
+      - ./script/eureka/config:/config
+      - ./script/eureka/app:/app
     working_dir: /app
     environment:
       - TZ=Asia/Seoul
