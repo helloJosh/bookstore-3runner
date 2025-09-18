@@ -9,7 +9,7 @@ spring:
       password: 3runner!23
 
   datasource:
-    url: jdbc:mysql://localhost:3306/bookstore
+    url: jdbc:mysql://localhost:9306/bookstore
     username: root
     password: 3runner!23
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -30,4 +30,4 @@ spring:
 
 elasticsearch:
   url: localhost:9200
-  key: Q0I4SjQ1QUIyMlNic1BPbmdUVmU6YlRpV3RwSlFTMGFESjQxWnRXWlBiUQ==
+  key: #Q0I4SjQ1QUIyMlNic1BPbmdUVmU6YlRpV3RwSlFTMGFESjQxWnRXWlBiUQ==

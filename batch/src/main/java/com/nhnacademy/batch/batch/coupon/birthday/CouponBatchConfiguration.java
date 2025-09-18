@@ -1,10 +1,9 @@
-package com.nhnacademy.batch.batch.coupon;
+package com.nhnacademy.batch.batch.coupon.birthday;
 
 import com.nhnacademy.batch.batch.coupon.exception.RetryException;
 import com.nhnacademy.batch.batch.coupon.exception.SkipException;
 import com.nhnacademy.batch.batch.coupon.feign.CouponControllerClient;
 import com.nhnacademy.batch.entity.member.Member;
-import com.nhnacademy.batch.entity.member.enums.Status;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -19,11 +18,6 @@ import org.springframework.batch.item.database.builder.JpaPagingItemReaderBuilde
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * 쿠폰 배치 설정.

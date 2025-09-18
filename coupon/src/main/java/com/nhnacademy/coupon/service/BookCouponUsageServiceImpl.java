@@ -4,7 +4,7 @@ import com.nhnacademy.coupon.repository.BookCouponRepository;
 import com.nhnacademy.coupon.adapter.BookControllerClient;
 import com.nhnacademy.coupon.dto.adapter.BookForCouponResponse;
 import com.nhnacademy.coupon.repository.BookCouponUsageRepository;
-import com.nhnacademy.coupon.repository.CouponUsageRespository;
+import com.nhnacademy.coupon.repository.CouponUsageRepository;
 import com.nhnacademy.coupon.entity.BookCoupon;
 import com.nhnacademy.coupon.entity.BookCouponUsage;
 import com.nhnacademy.coupon.entity.CouponUsage;
@@ -24,7 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class BookCouponUsageServiceImpl implements BookCouponUsageService {
-    private final CouponUsageRespository couponUsageRespository;
+    private final CouponUsageRepository couponUsageRespository;
     private final BookCouponUsageRepository bookCouponUsageRepository;
     private final BookCouponRepository bookCouponRepository;
     private final BookControllerClient bookControllerClient;

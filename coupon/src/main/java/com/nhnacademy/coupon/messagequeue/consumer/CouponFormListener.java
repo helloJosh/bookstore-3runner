@@ -1,4 +1,4 @@
-package com.nhnacademy.coupon.consumer;
+package com.nhnacademy.coupon.messagequeue.consumer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

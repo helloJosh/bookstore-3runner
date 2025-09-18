@@ -10,7 +10,7 @@ import com.nhnacademy.coupon.repository.CouponFormRepository;
 import com.nhnacademy.coupon.exceptionhandler.CouponTypeDoesNotExistException;
 import com.nhnacademy.coupon.repository.CouponTypeRepository;
 import com.nhnacademy.coupon.exceptionhandler.CouponUsageDoesNotExistException;
-import com.nhnacademy.coupon.repository.CouponUsageRespository;
+import com.nhnacademy.coupon.repository.CouponUsageRepository;
 import com.nhnacademy.coupon.entity.CouponForm;
 import com.nhnacademy.coupon.entity.CouponType;
 import com.nhnacademy.coupon.entity.CouponUsage;
@@ -35,7 +35,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Transactional
 public class CouponFormServiceImpl implements CouponFormService {
-    private final CouponUsageRespository couponUsageRespository;
+    private final CouponUsageRepository couponUsageRepository;
     private final CouponTypeRepository couponTypeRepository;
     private final CouponFormRepository couponFormRepository;
     private final BookCouponUsageService bookCouponUsageService;
@@ -61,7 +61,7 @@ public class CouponFormServiceImpl implements CouponFormService {
 
     @Override
     public Long create(CreateCouponFormRequest createCouponFormRequest) {
-        CouponUsage couponUsage = couponUsageRespository
+        CouponUsage couponUsage = couponUsageRepository
                 .findById(createCouponFormRequest.couponUsageId())
                 .orElseThrow(
                         ()-> new CouponUsageDoesNotExistException(createCouponFormRequest.couponUsageId()+"가 존재하지 않습니다.")

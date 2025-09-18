@@ -1,7 +1,7 @@
 package com.nhnacademy.coupon.service;
 
 import com.nhnacademy.coupon.dto.response.ReadCouponUsageResponse;
-import com.nhnacademy.coupon.repository.CouponUsageRespository;
+import com.nhnacademy.coupon.repository.CouponUsageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class CouponUsageServiceImpl implements CouponUsageService {
-    private final CouponUsageRespository couponUsageRespository;
+    private final CouponUsageRepository couponUsageRespository;
 
     /**
      * 쿠폰 사용처 모두 읽기.

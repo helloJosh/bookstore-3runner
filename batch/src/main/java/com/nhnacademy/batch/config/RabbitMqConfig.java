@@ -1,4 +1,4 @@
-package com.nhnacademy.coupon.config;
+package com.nhnacademy.batch.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;
@@ -25,7 +25,6 @@ import java.time.Duration;
 @Slf4j
 @Configuration
 public class RabbitMqConfig {
-
     @Value("${spring.rabbitmq.host}")
     private String rabbitmqHost;
 

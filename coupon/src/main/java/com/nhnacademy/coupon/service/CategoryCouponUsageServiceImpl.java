@@ -8,7 +8,7 @@ import com.nhnacademy.coupon.entity.CategoryCouponUsage;
 import com.nhnacademy.coupon.entity.CouponUsage;
 import com.nhnacademy.coupon.repository.CategoryCouponRepository;
 import com.nhnacademy.coupon.repository.CategoryCouponUsageRepository;
-import com.nhnacademy.coupon.repository.CouponUsageRespository;
+import com.nhnacademy.coupon.repository.CouponUsageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CategoryCouponUsageServiceImpl implements CategoryCouponUsageService {
-    private final CouponUsageRespository couponUsageRespository;
+    private final CouponUsageRepository couponUsageRespository;
     private final CategoryCouponUsageRepository categoryCouponUsageRepository;
     private final CategoryCouponRepository categoryCouponRepository;
     private final CategoryControllerClient categoryControllerClient;
