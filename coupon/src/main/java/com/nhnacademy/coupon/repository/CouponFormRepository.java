@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * JPA 쿠폰폼 저장소.
@@ -31,5 +32,5 @@ public interface CouponFormRepository extends JpaRepository<CouponForm, Long> {
 
 
     List<CouponForm> findAllByIdIn(List<Long> couponFormIds);
-    Optional<CouponForm> findCouponFormByCode(String code);
+    Optional<CouponForm> findCouponFormByCode(UUID code);
 }

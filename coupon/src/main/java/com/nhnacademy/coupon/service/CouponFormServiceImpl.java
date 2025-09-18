@@ -50,7 +50,7 @@ public class CouponFormServiceImpl implements CouponFormService {
 
     @Override
     public void use(String code) {
-        CouponForm couponForm = couponFormRepository.findCouponFormByCode(code)
+        CouponForm couponForm = couponFormRepository.findCouponFormByCode(UUID.fromString(code))
                         .orElseThrow(
                                 () -> new CouponFormNotExistException("쿠폰이 존재 하지 않습니다.")
                         );

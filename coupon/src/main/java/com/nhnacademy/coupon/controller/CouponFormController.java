@@ -25,12 +25,14 @@ public class CouponFormController {
     @PostMapping("/members/forms")
     public ApiResponse<List<ReadCouponFormResponse>> readCouponForm(
             @RequestBody ReadCouponFormRequest readCouponFormRequest
-            ){
+    ) {
         return ApiResponse.success(couponFormService.readAll(readCouponFormRequest.couponFormIds()));
     }
 
     @PostMapping("/forms")
-    public ApiResponse<Long> createCouponForm(@RequestBody CreateCouponFormRequest createCouponFormRequest) {
+    public ApiResponse<Long> createCouponForm (
+            @RequestBody CreateCouponFormRequest createCouponFormRequest
+    ) {
         return ApiResponse.createSuccess(couponFormService.create(createCouponFormRequest));
     }
 

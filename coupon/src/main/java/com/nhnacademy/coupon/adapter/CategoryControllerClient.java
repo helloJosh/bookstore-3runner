@@ -12,5 +12,7 @@ import java.util.List;
 public interface CategoryControllerClient {
 
     @GetMapping("bookstore/categories/list")
-    ApiResponse<List<CategoryForCouponResponse>> readAllCategoriesList(@RequestParam List<Long> ids);
+    ApiResponse<List<CategoryForCouponResponse>> readAllCategoriesList(
+            @RequestParam("ids") List<Long> ids
+    );
 }

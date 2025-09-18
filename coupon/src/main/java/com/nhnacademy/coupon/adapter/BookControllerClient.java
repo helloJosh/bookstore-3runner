@@ -11,5 +11,7 @@ import java.util.List;
 @FeignClient(name = "BookControllerClient", url = "http://${feign.bookstore.url}")
 public interface BookControllerClient {
     @GetMapping("bookstore/books/list")
-    ApiResponse<List<BookForCouponResponse>> readAllBooksForCoupon(@RequestParam List<Long> ids);
+    ApiResponse<List<BookForCouponResponse>> readAllBooksForCoupon(
+            @RequestParam("ids") List<Long> ids
+    );
 }
