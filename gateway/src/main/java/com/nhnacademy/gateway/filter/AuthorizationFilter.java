@@ -6,6 +6,8 @@ import com.nhnacademy.gateway.jwt.JWTUtil;
 import com.nhnacademy.gateway.util.ApiResponse;
 import com.nhnacademy.gateway.util.ErrorResponseForm;
 import com.nhnacademy.gateway.util.TokenDetails;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -25,6 +27,7 @@ import reactor.core.publisher.Mono;
  * 토큰 내의 멤버 아이디 정보를 헤더에 추가해주는 필터.
  *
  * @author 오연수
+ * @author FIX 김병우 : Spring 3.5.4, Spring Cloud 25.0.0 업데이트 후 에러 수정
  */
 @Component
 @Slf4j
@@ -42,9 +45,11 @@ public class AuthorizationFilter extends AbstractGatewayFilterFactory<Authorizat
 		this.objectMapper = objectMapper;
 	}
 
-	@RequiredArgsConstructor
+
+	@AllArgsConstructor
+	@NoArgsConstructor
 	public static class Config {
-		private final JWTUtil jwtUtils;
+		private JWTUtil jwtUtils;
 	}
 
 	@Override
