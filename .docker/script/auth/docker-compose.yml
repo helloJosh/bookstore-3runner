@@ -1,0 +1,17 @@
+services:
+  app-auth:
+    image: openjdk:21
+    container_name: app-auth
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    depends_on:
+      - mysql-bookstore
+      - redis
+      - rabbitmq
+    network_mode: host

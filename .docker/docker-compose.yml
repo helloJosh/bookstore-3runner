@@ -79,3 +79,148 @@ services:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
       - TZ=Asia/Seoul
     restart: always
+
+  #--------------------------------
+  #운영 Application Container
+  #--------------------------------
+  app-bookstore1:
+    image: openjdk:21
+    container_name: app-bookstore1
+    volumes:
+      - ./script/bookstore1/config:/config
+      - ./script/bookstore1/app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    depends_on:
+      - mysql-bookstore
+      - redis
+      - rabbitmq
+      - elasticsearch
+      - kibana
+    network_mode: host
+
+  app-bookstore2:
+    image: openjdk:21
+    container_name: app-bookstore2
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - mysql-bookstore
+      - redis
+      - rabbitmq
+      - elasticsearch
+      - kibana
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    network_mode: host
+
+  app-coupon1:
+    image: openjdk:21
+    container_name: app-coupon1
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - mysql-coupon
+      - redis
+      - rabbitmq
+      - elasticsearch
+      - kibana
+    command: >
+      bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
+    network_mode: host
+
+  app-coupon2:
+    image: openjdk:21
+    container_name: app-coupon2
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - mysql-coupon
+      - redis
+      - rabbitmq
+      - elasticsearch
+      - kibana
+    command: >
+      bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
+    network_mode: host
+
+  app-batch:
+    image: openjdk:21
+    container_name: app-batch
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - mysql-coupon
+      - mysql-bookstore
+      - redis
+      - rabbitmq
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    network_mode: host
+
+  app-auth:
+    image: openjdk:21
+    container_name: app-auth
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    depends_on:
+      - mysql-bookstore
+      - redis
+      - rabbitmq
+    network_mode: host
+
+  app-gateway:
+    image: openjdk:21
+    container_name: app-gateway
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    depends_on:
+      - mysql-bookstore
+      - redis
+    network_mode: host
+
+  app-eureka:
+    image: openjdk:21
+    container_name: app-eureka
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - redis
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    network_mode: host

@@ -1,0 +1,19 @@
+services:
+  app-bookstore1:
+    image: openjdk:21
+    container_name: app-bookstore1
+    volumes:
+      - ./script/bookstore1/config:/config
+      - ./script/bookstore1/app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    depends_on:
+      - mysql-bookstore
+      - redis
+      - rabbitmq
+      - elasticsearch
+      - kibana
+    network_mode: host

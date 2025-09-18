@@ -1,0 +1,16 @@
+services:
+  app-gateway:
+    image: openjdk:21
+    container_name: app-gateway
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    depends_on:
+      - mysql-bookstore
+      - redis
+    network_mode: host

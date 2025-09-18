@@ -1,0 +1,19 @@
+services:
+  app-coupon2:
+    image: openjdk:21
+    container_name: app-coupon2
+    volumes:
+      - ./app/config:/config
+      - ./app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - mysql-coupon
+      - redis
+      - rabbitmq
+      - elasticsearch
+      - kibana
+    command: >
+      bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
+    network_mode: host
