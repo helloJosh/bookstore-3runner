@@ -1,6 +1,5 @@
 package com.nhnacademy.batch.book.book.repository.impl;
 
-import com.nhnacademy.batch.batch.book.book.repository.impl.BookRestTemplateImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

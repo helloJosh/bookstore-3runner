@@ -1,8 +1,7 @@
 package com.nhnacademy.batch.book.book.repository.impl;
 
-import com.nhnacademy.batch.batch.book.book.exception.ElasticBulkMadeException;
-import com.nhnacademy.batch.batch.book.book.repository.impl.BookDocumentImpl;
-import com.nhnacademy.batch.batch.book.book.response.BookDocument;
+import com.nhnacademy.batch.book.book.exception.ElasticBulkMadeException;
+import com.nhnacademy.batch.book.book.response.BookDocument;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,7 +1,6 @@
 package com.nhnacademy.batch.book.task;
 
-import com.nhnacademy.batch.batch.book.book.service.BookService;
-import com.nhnacademy.batch.batch.book.task.BookTask;
+import com.nhnacademy.batch.book.book.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
