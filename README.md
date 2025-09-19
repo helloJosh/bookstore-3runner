@@ -20,23 +20,18 @@
 ### 담당
 - 장바구니
     - 비회원, 회원 장바구니 REST API 구축과 UI 구현
-    - 쿠키 사용으로 비회원, 회원의 정보를 DB 에 저장하여 기능 개선.
-    - 캐쉬, DB 두개의 장점을 갖기 위해 Redis 를 DB 와 동기화하여 TPS 약 50% 증가
 - 주문
     - 회원,비회원 주문 프로세스 REST API 구축과 UI 구현
-    - 정확한 주소를 고객에게 제공하기 위해 행안부 주소도로명 API를 추가하여 배송지를 정확한 주소로 추가할수 있게 구현하였습니다.
-    - Toss Payment 와 주문 프로세스를 한 트랜잭션에 묶어 주문 프로세스 구현
+    - 행안부 주소도로명 API 연동
+    - TOSS PAYMENTS API, 결제 서비스 트랜젝션 연동 구현
 - 쿠폰
     - 쿠폰 REST API 구축과 UI 구현
-    - 높은 트래픽을 안정적으로 처리하기 위해 쿠폰 발급에 RabbitMQ 를 도입하여 오류 0%로 줄이고 TPS 약 10% 증가
-    - JPA 장점과 실패 시 오류 로그 출력을 위해 Spring Batch 를 사용하여 쿠폰 만료 알림 구현
-    - 쿠폰 REST API 설계와 UI 구현하였습니다.
+    - 높은 트래픽을 안정적으로 처리하기 위해 쿠폰 발급 요청시 Redis로 데이터를 모으고 RabbitMQ로 Spring Batch에 데이터를 보내 10분 배치로 DB에 인서트
 - 포인트
     - 포인트 REST API 구축과 UI 구현하였습니다.
     - 포인트 정책 REST API 구축과 UI 구현하였습니다.
 - 인프라
-    - Client Side 로드밸런싱을 하기위해 OpenFeign 을 사용하여 각 서버에 효율적으로 접근하도록 네트워크 설계
-    - Gateway 가 각 서버를 효율적으로 찾아가기 위해 Spring Eureka 를 사용하여 서버의 내부 정보를 캐싱하여 네트워크 설계
+    - Spring Eureka, Spring Gateway, Docker compose를 사용하여 CI/CD 구현
 
 ## 김은비
 ### 담당
