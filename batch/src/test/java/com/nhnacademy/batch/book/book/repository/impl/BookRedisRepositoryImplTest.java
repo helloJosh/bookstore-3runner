@@ -1,6 +1,5 @@
 package com.nhnacademy.batch.book.book.repository.impl;
 
-import com.nhnacademy.batch.batch.book.book.repository.impl.BookRedisRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,6 +1,5 @@
 package com.nhnacademy.batch.book.book.repository.impl;
 
-import com.nhnacademy.batch.batch.book.book.repository.impl.JsonFileLoadRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
