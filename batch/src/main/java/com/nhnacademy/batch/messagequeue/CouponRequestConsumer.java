@@ -3,12 +3,14 @@ package com.nhnacademy.batch.messagequeue;
 import com.nhnacademy.batch.utils.RedisTime;
 import com.nhnacademy.batch.utils.SlotKey;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class CouponRequestConsumer {
@@ -19,6 +21,7 @@ public class CouponRequestConsumer {
 
     @RabbitListener(queues = "q.create.request") // 기본 auto-ack 가정
     public void onMessage(String msg) {
+        log.info("q.create.request : {} consumer recieved msg", msg);
         long now = RedisTime.nowMillis(redis);
         String slot = SlotKey.currentSlot(now);
 

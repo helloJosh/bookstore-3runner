@@ -5,9 +5,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.coupon.dto.request.CreateCouponFormRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CouponRequestPublisher {
@@ -18,6 +20,7 @@ public class CouponRequestPublisher {
         try {
 
             String msg = objectMapper.writeValueAsString(dto);
+            log.info("q.create.request queue : {} message produced", msg);
 
             //exchange, routingKey
             rabbit.convertAndSend("ex.requests", "req.create", msg);

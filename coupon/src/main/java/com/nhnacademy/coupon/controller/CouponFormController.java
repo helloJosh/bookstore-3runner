@@ -5,7 +5,9 @@ import com.nhnacademy.coupon.dto.response.ReadCouponFormResponse;
 import com.nhnacademy.coupon.dto.request.ReadCouponFormRequest;
 import com.nhnacademy.coupon.service.CouponFormService;
 import com.nhnacademy.coupon.util.ApiResponse;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.List;
  *
  * @author 김병우
  */
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/coupon")
@@ -34,6 +37,18 @@ public class CouponFormController {
     ) {
         return ApiResponse.createSuccess(couponFormService.create(createCouponFormRequest));
     }
+
+    @PostMapping("/forms-batch")
+    public ApiResponse<Long> createCouponFormBatch (
+            @RequestBody CreateCouponFormRequest createCouponFormRequest
+    ) {
+        log.info("create coupon batch request");
+        couponFormService.createBatch(createCouponFormRequest);
+        return ApiResponse.success(0L
+        );
+    }
+
+
 
     @GetMapping("/forms")
     public ApiResponse<List<ReadCouponFormResponse>> readAllCouponForms() {

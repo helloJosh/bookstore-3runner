@@ -16,10 +16,16 @@ public interface CouponFormService {
     /**
      * 쿠폰 폼 생성.
      *
-     * @param readCouponFormRequest 요청Dto.
+     * @param createCouponFormRequest 요청Dto.
      * @return 쿠폰폼 아이디
      */
-    Long create(CreateCouponFormRequest readCouponFormRequest);
+    Long create(CreateCouponFormRequest createCouponFormRequest);
+    /**
+     * 쿠폰 폼 생성.
+     *
+     * @param createCouponFormRequest 요청Dto.
+     */
+    void createBatch(CreateCouponFormRequest createCouponFormRequest);
 
     /**
      * 쿠폰 폼 사용.

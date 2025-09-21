@@ -20,8 +20,8 @@ public class CouponType {
 
     private String type;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponType" , cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<CouponForm> couponForms = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponType" , cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    private List<CouponForm> couponForms = new ArrayList<>();
 
     public CouponType(String type) {
         this.type = type;

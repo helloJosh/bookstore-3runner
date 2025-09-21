@@ -12,5 +12,5 @@ import java.util.Optional;
  * @author 김병우
  */
 public interface FixedCouponRepository extends JpaRepository<FixedCoupon, Long> {
-    Optional<FixedCoupon> findByCouponType(CouponType couponType);
+    Optional<FixedCoupon> findByCouponTypeId(Long couponTypeId);
 }

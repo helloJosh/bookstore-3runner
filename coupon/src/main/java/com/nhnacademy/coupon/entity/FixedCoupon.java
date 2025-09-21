@@ -15,14 +15,15 @@ public class FixedCoupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @MapsId
-    @OneToOne
-    private CouponType couponType;
+//    @OneToOne
+//    private CouponType couponType;
+
+    private Long couponTypeId;
 
     private int discountPrice;
 
-    public FixedCoupon(CouponType couponType, int discountPrice) {
-        this.couponType = couponType;
+    public FixedCoupon(Long couponTypeId, int discountPrice) {
+        this.couponTypeId = couponTypeId;
         this.discountPrice = discountPrice;
     }
 }

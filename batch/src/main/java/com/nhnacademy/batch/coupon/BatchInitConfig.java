@@ -22,12 +22,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class BatchInitConfig {
     private final JobRepository jobRepository;
     private final JobRegistry jobRegistry;
-    private final EntityManagerFactory entityManagerFactory;
-    private final PlatformTransactionManager transactionManager;
-    private final CouponControllerClient couponControllerClient;
 
     private final Steps step;
-    private final Tasklets couponSaveTasklet;
 
     @PostConstruct
     public void run() throws DuplicateJobException {

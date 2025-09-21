@@ -6,6 +6,7 @@ import com.nhnacademy.coupon.dto.CouponFormDto;
 import com.nhnacademy.coupon.dto.request.CreateCouponFormRequest;
 import com.nhnacademy.coupon.dto.response.ReadCouponFormResponse;
 import com.nhnacademy.coupon.exceptionhandler.CouponFormNotExistException;
+import com.nhnacademy.coupon.messagequeue.producer.CouponRequestPublisher;
 import com.nhnacademy.coupon.repository.CouponFormRepository;
 import com.nhnacademy.coupon.exceptionhandler.CouponTypeDoesNotExistException;
 import com.nhnacademy.coupon.repository.CouponTypeRepository;
@@ -47,6 +48,8 @@ public class CouponFormServiceImpl implements CouponFormService {
     private final ObjectMapper objectMapper;
     private static final String QUEUE_NAME_2 = "3RUNNER-COUPON-EXPIRED-IN-THREE-DAY";
     private static final String QUEUE_NAME_1 = "3RUNNER-COUPON-ISSUED";
+
+    private final CouponRequestPublisher publisher;
 
     @Override
     public void use(String code) {
@@ -92,6 +95,11 @@ public class CouponFormServiceImpl implements CouponFormService {
 
         couponFormRepository.save(couponForm);
         return couponForm.getId();
+    }
+
+    @Override
+    public void createBatch(CreateCouponFormRequest createCouponFormRequest) {
+        publisher.send(createCouponFormRequest);
     }
 
     @Override

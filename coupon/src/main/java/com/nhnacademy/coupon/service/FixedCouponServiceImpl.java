@@ -32,7 +32,7 @@ public class FixedCouponServiceImpl implements FixedCouponService {
         CouponType couponType = new CouponType(type);
         couponTypeRepository.save(couponType);
 
-        FixedCoupon fixedCoupon = new FixedCoupon(couponType, discountPrice);
+        FixedCoupon fixedCoupon = new FixedCoupon(couponType.getId(), discountPrice);
         fixedCouponRepository.save(fixedCoupon);
 
         return couponType.getId();
@@ -45,9 +45,9 @@ public class FixedCouponServiceImpl implements FixedCouponService {
                 .orElseThrow(()-> new CouponTypeDoesNotExistException(couponTypeId+"가 없습니다"));
 
         Optional<FixedCoupon> fixedCouponOptional = fixedCouponRepository
-                .findByCouponType(couponType);
+                .findByCouponTypeId(couponType.getId());
 
-        FixedCoupon fixedCoupon = fixedCouponOptional.orElseGet(() -> new FixedCoupon(couponType, 0));
+        FixedCoupon fixedCoupon = fixedCouponOptional.orElseGet(() -> new FixedCoupon(couponType.getId(), 0));
 
         return ReadFixedCouponResponse.builder()
                 .fixedCouponId(fixedCoupon.getId())

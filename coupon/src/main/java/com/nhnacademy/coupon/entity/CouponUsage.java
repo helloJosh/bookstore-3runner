@@ -33,4 +33,6 @@ public class CouponUsage {
     public CouponUsage(String usage) {
         this.usage = usage;
     }
+
+
 }

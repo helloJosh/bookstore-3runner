@@ -124,6 +124,7 @@ public class Tasklets implements Tasklet {
 
             // 4) 실제 저장 루프
             long processed = consumeAndSave(procKey);
+            log.info("processed count : {}", processed);
 
             // 5) 검증
             if (processed < expected) {
@@ -231,91 +232,4 @@ public class Tasklets implements Tasklet {
         if (!key.endsWith("}:" + suffix)) return null;
         return key.substring(braceOpen + 1, braceClose);
     }
-
-
-//    @Override
-//    public RepeatStatus execute(StepContribution c, ChunkContext ctx) throws Exception {
-//        long now = RedisTime.nowMillis(redis);
-//        String slot = SlotKey.previousSlot(now);
-//
-//        String countKey = "req:count:" + slot;
-//        String fromKey  = "req:list:"  + slot;
-//        String procKey  = "req:proc:"  + slot;
-//
-//        Long swapped = redis.execute((RedisCallback<Long>) con ->
-//                con.eval(LUA_SWAP.getBytes(), ReturnType.INTEGER, 2, fromKey.getBytes(), procKey.getBytes()));
-//        if (swapped == null || swapped == 0) {
-//            redis.opsForValue().setIfAbsent(countKey, "0");
-//            return RepeatStatus.FINISHED;
-//        }
-//        if (swapped == -1) {
-//            throw new IllegalStateException("Previous batch not finished for slot " + slot);
-//        }
-//
-//        long expected = 0;
-//        String v = redis.opsForValue().get(countKey);
-//        if (v != null) expected = Long.parseLong(v);
-//
-//        long processed = 0;
-//        final int CHUNK = 5_000;
-//
-//        while (true) {
-//            Long len = redis.opsForList().size(procKey);
-//            if (len == null || len == 0) break;
-//
-//            long take = Math.min(len, CHUNK);
-//            // LRANGE 0..take-1
-//            var batch = redis.opsForList().range(procKey, 0, take - 1);
-//            if (batch == null || batch.isEmpty()) break;
-//
-//            List<CouponForm> couponFormList = new ArrayList<>();
-//            for (String msg : batch) {
-//                CreateCouponFormRequest request = objectMapper.readValue(msg, CreateCouponFormRequest.class);
-//                CouponUsage couponUsage = couponUsageRepository
-//                        .findById(request.couponUsageId())
-//                        .orElseThrow();
-//
-//                CouponType couponType = couponTypeRepository
-//                        .findById(request.couponTypeId())
-//                        .orElseThrow();
-//
-//                CouponForm couponForm = new CouponForm();
-//
-//                couponForm.setBasicDetails(
-//                        request.startDate(),
-//                        request.endDate(),
-//                        request.name(),
-//                        request.quantity(),
-//                        UUID.randomUUID(),
-//                        request.maxPrice(),
-//                        request.minPrice()
-//                );
-//
-//                couponForm.setCouponDetails(
-//                        couponType,
-//                        couponUsage
-//                );
-//
-//                couponFormList.add(couponForm);
-//            }
-//            couponFormRepository.saveAll(couponFormList);
-//
-//            // 처리한 만큼 LTRIM
-//            redis.opsForList().trim(procKey, take, -1);
-//            processed += batch.size();
-//        }
-//
-//        if (processed != expected) {
-//            // 필요 정책에 따라 경고/조정
-//            // 기대치보다 적으면 실패로 간주
-//            if (processed < expected) {
-//                log.error("Mismatch slot={} expected={} processed={}", slot, expected, processed);
-//                //throw new IllegalStateException("Mismatch slot=" + slot + " expected=" + expected + " processed=" + processed);
-//            }
-//        }
-//
-//        redis.opsForValue().set(countKey, "0");
-//        redis.delete(procKey);
-//        return RepeatStatus.FINISHED;
-//    }
 }
