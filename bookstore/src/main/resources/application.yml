@@ -1,4 +1,11 @@
+server:
+  shutdown: graceful
+  port: 8081
+
+
 spring:
+  profiles:
+    active: local
   data:
     elasticsearch:
       repositories:
@@ -7,29 +14,24 @@ spring:
   jpa:
     open-in-view: false
     show-sql: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
         use_sql_comments: true
         highlight_sql: true
         auto_quote_keyword: true
-        hbm2ddl:
-          auto: create
 
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
 
-  profiles:
-    active: prod
   lifecycle:
     timeout-per-shutdown-phase: 30s
   application:
     name: 3runner-bookstore
-
-server:
-  shutdown: graceful
 
 logging:
   level:
@@ -54,26 +56,6 @@ springdoc:
     url: /docs/openapi-3.0.json
     path: /bookstore/docs/swagger
 
-rabbitmq:
-  host: localhost
-  port: 5672
-  username: admin
-  password: 1234
-
-redis:
-  host: localhost
-  port: 6379
-  password: 1234
-
-db:
-  driver: com.mysql.cj.jdbc.Driver
-  url: jdbc:mysql://localhost:3306/bookstore
-  username: admin
-  password: 1234
-  initial-size: 10
-  max-total: 10
-  max-idle: 10
-  min-idle: 10
 
 management:
   endpoints:
@@ -88,3 +70,13 @@ management:
       enabled: true
     os:
       enabled: true
+
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:1234@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true

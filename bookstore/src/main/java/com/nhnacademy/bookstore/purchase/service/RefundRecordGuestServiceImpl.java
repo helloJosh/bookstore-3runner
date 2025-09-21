@@ -13,7 +13,6 @@ import com.nhnacademy.bookstore.purchase.dto.response.ReadPurchaseBookResponse;
 import com.nhnacademy.bookstore.purchase.exception.NotExistsPurchaseBook;
 import com.nhnacademy.bookstore.purchase.repository.PurchaseBookCustomRepository;
 import com.nhnacademy.bookstore.purchase.repository.PurchaseBookRepository;
-import com.nhnacademy.bookstore.purchase.exception.NotExistsRefund;
 import com.nhnacademy.bookstore.purchase.repository.RefundRepository;
 import com.nhnacademy.bookstore.purchase.dto.response.ReadRefundRecordResponse;
 import com.nhnacademy.bookstore.purchase.exception.AlreadyExistsRefundRecordRedis;
@@ -159,7 +158,7 @@ public class RefundRecordGuestServiceImpl implements RefundRecordGuestService {
 		if (!refundRecordRedisRepository.isHit(orderNumber)) {
 			return false;
 		}
-		Refund memberRefund = refundRepository.findById(refundId).orElseThrow(NotExistsRefund::new);
+		Refund memberRefund = refundRepository.findById(refundId).orElseThrow(RuntimeException::new);
 
 		List<ReadRefundRecordResponse> readRefundRecordResponseList = readRefundRecordRedis(orderNumber);
 

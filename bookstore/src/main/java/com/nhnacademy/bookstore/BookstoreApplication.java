@@ -10,7 +10,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @SpringBootApplication
 public class BookstoreApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(BookstoreApplication.class, args);
     }
