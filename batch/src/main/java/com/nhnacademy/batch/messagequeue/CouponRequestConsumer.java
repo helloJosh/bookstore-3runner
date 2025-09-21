@@ -17,7 +17,7 @@ public class CouponRequestConsumer {
     private static final String COUNT_KEY = "req:{%s}:count";
     private static final String LIST_KEY  = "req:{%s}:list";
 
-    @RabbitListener(queues = "q.requests") // 기본 auto-ack 가정
+    @RabbitListener(queues = "q.create.request") // 기본 auto-ack 가정
     public void onMessage(String msg) {
         long now = RedisTime.nowMillis(redis);
         String slot = SlotKey.currentSlot(now);

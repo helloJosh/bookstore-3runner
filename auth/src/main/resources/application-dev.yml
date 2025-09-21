@@ -3,6 +3,12 @@ spring:
     activate:
       on-profile: dev
 
+  data:
+    redis:
+      host: localhost
+      port: 9379
+      password: 3runner!23
+
 feign:
   client:
     url: localhost:8080

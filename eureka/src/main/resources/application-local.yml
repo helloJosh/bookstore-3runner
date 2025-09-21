@@ -6,7 +6,7 @@ spring:
   data:
     redis:
       host: localhost
-      port: 6379
+      port: 9379
       password: 3runner!23
 
 server:
@@ -14,7 +14,7 @@ server:
 
 eureka:
   instance:
-    hostname: dev
+    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false

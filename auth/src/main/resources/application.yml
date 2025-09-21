@@ -1,12 +1,16 @@
-logging:
-  level:
-    root: debug
+server:
+  shutdown: graceful
+  port: 8090
+  netty:
+    connection-timeout: 30s
 
 spring:
+  profiles:
+    active: local
   lifecycle:
     timeout-per-shutdown-phase: 30s
   application:
-    name: 3runner-auth
+    name: auth
   security:
     oauth2:
       client:
@@ -26,14 +30,6 @@ spring:
   jwt:
     secret: aaaasqwlkljlfasdfqwerafcxvzpojijoijopjewndllllllsserrrrrrwqexc
 
-  data:
-    redis:
-      host: 133.186.241.167
-      port: 6379
-      database: 15
-      password: "*N2vya7H@muDTwdNMR!"
-  profiles:
-    active: dev
 
 management:
   endpoint:
@@ -45,8 +41,6 @@ management:
       enabled: true
 
 
-server:
-  shutdown: graceful
-  port: 8090
-  netty:
-    connection-timeout: 30s
+logging:
+  level:
+    root: info

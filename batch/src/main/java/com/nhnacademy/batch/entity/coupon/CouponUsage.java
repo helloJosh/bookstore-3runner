@@ -20,15 +20,15 @@ public class CouponUsage {
     private Long id;
 
     private String usage;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponUsage" , cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<CouponForm> couponForms = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponUsage" , cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<BookCouponUsage> bookCouponUsages = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponUsage" , cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<CategoryCouponUsage> categoryCouponUsages = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponUsage" , cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    private List<CouponForm> couponForms = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponUsage" , cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    private List<BookCouponUsage> bookCouponUsages = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "couponUsage" , cascade = CascadeType.PERSIST, orphanRemoval = true)
+//    private List<CategoryCouponUsage> categoryCouponUsages = new ArrayList<>();
 
     public CouponUsage(String usage) {
         this.usage = usage;

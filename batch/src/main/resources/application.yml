@@ -7,8 +7,22 @@ spring:
 
   application:
     name: 3runner-batch
+
   jpa:
+    open-in-view: false
     show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        highlight_sql: true
+        auto_quote_keyword: true
+
+  batch:
+    jdbc:
+      initialize-schema: always
 
 eureka:
   client:

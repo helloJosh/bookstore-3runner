@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 public class CouponRequestPublisher {
     private final RabbitTemplate rabbit;
     private final ObjectMapper objectMapper;
-    public void send(CreateCouponFormRequest dto) {
 
+    public void send(CreateCouponFormRequest dto) {
         try {
 
             String msg = objectMapper.writeValueAsString(dto);
