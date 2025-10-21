@@ -7,7 +7,7 @@ spring:
   application:
     name: 3runner-gateway
   profiles:
-    default: prod
+    default: local
   cloud:
     gateway:
       globalcors:
@@ -51,14 +51,13 @@ spring:
 
   data:
     redis:
-      host: 133.186.241.167
+      host: localhost
       port: 6379
-      database: 15
-      password: "*N2vya7H@muDTwdNMR!"
+      password: 3runner!23
 
 logging:
   level:
-    root: debug
+    root: info
 
 
 

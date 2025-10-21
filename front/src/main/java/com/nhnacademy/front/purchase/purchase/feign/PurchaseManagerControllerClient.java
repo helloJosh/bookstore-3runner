@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface PurchaseManagerControllerClient {
 	@GetMapping("/bookstore/managers/purchases")
 	ApiResponse<Page<ReadPurchaseResponse>> readPurchases(
-		@RequestParam(defaultValue = "0") int page,
-		@RequestParam(defaultValue = "10") int size,
-		@RequestParam(required = false) String sort
+		@RequestParam(value = "page", defaultValue = "0") int page,
+		@RequestParam(value = "size", defaultValue = "10") int size,
+		@RequestParam(value = "sort", required = false) String sort
 	);
 
 	@PutMapping("/bookstore/managers/purchases/{purchaseId}")
 	ApiResponse<Long> purchaseUpdate(
-		@PathVariable(value = "purchaseId") String purchaseId,
-		@RequestParam String purchaseStatus);
+		@PathVariable("purchaseId") String purchaseId,
+		@RequestParam("purchaseStatus") String purchaseStatus);
 }

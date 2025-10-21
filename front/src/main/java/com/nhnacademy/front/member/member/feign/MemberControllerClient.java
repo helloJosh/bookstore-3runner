@@ -17,22 +17,32 @@ public interface MemberControllerClient {
 	ApiResponse<GetMemberResponse> readById();
 
 	@PostMapping("/bookstore/members")
-	ApiResponse<Long> createMembers(@RequestBody CreateMemberRequest createMemberRequest);
+	ApiResponse<Long> createMembers(
+			@RequestBody CreateMemberRequest createMemberRequest
+	);
 
 	@PutMapping("/bookstore/members")
-	ApiResponse<UpdateMemberResponse> updateMembers(@Valid @RequestBody UpdateMemberRequest updateMemberRequest);
+	ApiResponse<UpdateMemberResponse> updateMembers(
+			@Valid @RequestBody UpdateMemberRequest updateMemberRequest
+	);
 
 	@DeleteMapping("/bookstore/members")
 	ApiResponse<Void> deleteMember();
 
 	@GetMapping("/bookstore/members/email")
-	ApiResponse<Boolean> emailExists(@RequestParam String email);
+	ApiResponse<Boolean> emailExists(
+			@RequestParam("email") String email
+	);
 
 	@PutMapping("/bookstore/members/password")
-	ApiResponse<Void> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest);
+	ApiResponse<Void> updatePassword(
+			@RequestBody UpdatePasswordRequest updatePasswordRequest
+	);
 
 	@PostMapping("/bookstore/members/password")
-	ApiResponse<Void> isPasswordMatch(@RequestBody PasswordCorrectRequest request);
+	ApiResponse<Void> isPasswordMatch (
+			@RequestBody PasswordCorrectRequest request
+	);
 
 }
 

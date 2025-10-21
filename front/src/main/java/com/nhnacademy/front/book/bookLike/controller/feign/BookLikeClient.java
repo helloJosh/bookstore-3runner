@@ -26,6 +26,6 @@ public interface BookLikeClient {
 	@GetMapping("/mypage/books/likes")
 	ApiResponse<Page<BookListResponse>> readAllBookLikesByMemberId(
 		@RequestHeader(value = "Member-Id", required = false) Long memberId,
-		@RequestParam(defaultValue = "0") int page,
-		@RequestParam(defaultValue = "10") int size);
+		@RequestParam(value = "page", defaultValue = "0") int page,
+		@RequestParam(value = "size", defaultValue = "10") int size);
 }

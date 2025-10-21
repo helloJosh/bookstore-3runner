@@ -54,8 +54,9 @@ public interface CategoryClient {
 	 */
 	@GetMapping("/books")
 	ApiResponse<Page<BookListResponse>> readCategoryAllBooks(
-		@RequestParam(defaultValue = "0") int page,
-		@RequestParam(defaultValue = "12") int size,
-		@RequestParam(defaultValue = "publishedDate,desc") String sort,
-		@RequestParam Long categoryId);
+			@RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "12") int size,
+			@RequestParam(name = "sort", defaultValue = "publishedDate,desc") String sort,
+			@RequestParam(name = "categoryId", defaultValue = "0") Long categoryId
+	);
 }

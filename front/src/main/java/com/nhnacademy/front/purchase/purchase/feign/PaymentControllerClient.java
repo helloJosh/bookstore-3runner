@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface PaymentControllerClient {
 	@RequestMapping(value = "/bookstore/payments/guests/confirm")
 	ResponseEntity<JSONObject> confirmGuestPayment(
-		@RequestParam(required = false) Long cartId,
-		@RequestParam(required = false) String address,
-		@RequestParam(required = false) String password,
-		@RequestParam(required = false) String isPacking,
-		@RequestParam(required = false) String shipping,
+		@RequestParam(value = "cartId", required = false) Long cartId,
+		@RequestParam(value = "address", required = false) String address,
+		@RequestParam(value = "password", required = false) String password,
+		@RequestParam(value = "isPacking", required = false) String isPacking,
+		@RequestParam(value = "shipping", required = false) String shipping,
 		@RequestBody String jsonBody) throws Exception;
 
 	@RequestMapping(value = "/bookstore/payments/members/confirm")
 	ResponseEntity<JSONObject> confirmMemberPayment(
-		@RequestParam(required = false) String discountedPrice,
-		@RequestParam(required = false) String discountedPoint,
-		@RequestParam(required = false) String isPacking,
-		@RequestParam(required = false) String shipping,
-		@RequestParam(required = false) String road,
-		@RequestParam(required = false) Long couponFormId,
+		@RequestParam(value = "discountedPrice", required = false) String discountedPrice,
+		@RequestParam(value = "discountedPoint", required = false) String discountedPoint,
+		@RequestParam(value = "isPacking", required = false) String isPacking,
+		@RequestParam(value = "shipping",required = false) String shipping,
+		@RequestParam(value = "road",required = false) String road,
+		@RequestParam(value = "couponFormId",required = false) Long couponFormId,
 		@RequestBody String jsonBody) throws Exception;
 
 }

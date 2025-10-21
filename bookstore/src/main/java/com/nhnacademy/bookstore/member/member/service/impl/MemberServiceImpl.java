@@ -13,7 +13,7 @@ import com.nhnacademy.bookstore.member.member.dto.request.UpdatePasswordRequest;
 import com.nhnacademy.bookstore.member.member.exception.GeneralNotPayco;
 import com.nhnacademy.bookstore.member.member.service.MemberPointService;
 import com.nhnacademy.bookstore.member.memberauth.repository.MemberAuthRepository;
-import com.nhnacademy.bookstore.purchase.coupon.service.CouponMemberService;
+import com.nhnacademy.bookstore.purchase.service.CouponMemberService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -34,8 +34,8 @@ import com.nhnacademy.bookstore.member.member.exception.MemberNotExistsException
 import com.nhnacademy.bookstore.member.member.repository.MemberRepository;
 import com.nhnacademy.bookstore.member.member.service.MemberService;
 import com.nhnacademy.bookstore.member.memberauth.dto.response.MemberAuthResponse;
-import com.nhnacademy.bookstore.purchase.purchase.dto.response.ReadPurchaseResponse;
-import com.nhnacademy.bookstore.purchase.purchase.repository.PurchaseRepository;
+import com.nhnacademy.bookstore.purchase.dto.response.ReadPurchaseResponse;
+import com.nhnacademy.bookstore.purchase.repository.PurchaseRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,0 +1,32 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+feign:
+  coupon:
+    url: localhost:8080
+
+elasticsearch:
+  url: localhost:9200
+
+rabbitmq:
+  host: localhost
+  port: 9672
+  username: 3runner
+  password: 3runner!23
+
+redis:
+  host: localhost
+  port: 9379
+  password: 3runner!23
+
+db:
+  driver: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://localhost:9306/bookstore
+  username: root
+  password: 3runner!23
+  initial-size: 10
+  max-total: 10
+  max-idle: 10
+  min-idle: 10

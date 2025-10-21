@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  data:
+    redis:
+      host: localhost
+      port: 9379
+      password: 3runner!23
+
+feign:
+  client:
+    url: localhost:8080
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://admin:1234@localhost:8761/eureka
+  instance:
+    prefer-ip-address: true

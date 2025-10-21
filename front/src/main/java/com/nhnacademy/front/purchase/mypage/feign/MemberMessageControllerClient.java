@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface MemberMessageControllerClient {
 	@GetMapping("/bookstore/messages")
 	ApiResponse<Page<ReadMemberMessageResponse>> readAllById(
-		@RequestParam(defaultValue = "0") int page,
-		@RequestParam(defaultValue = "10") int size);
+		@RequestParam(value = "page", defaultValue = "0") int page,
+		@RequestParam(value = "size", defaultValue = "10") int size);
 
 	@GetMapping("/bookstore/messages/counts")
 	ApiResponse<Long> readUnReadMessage();

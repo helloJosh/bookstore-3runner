@@ -1,0 +1,15 @@
+services:
+  app-eureka:
+    image: openjdk:21
+    container_name: app-eureka
+    volumes:
+      - ./script/eureka/config:/config
+      - ./script/eureka/app:/app
+    working_dir: /app
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - redis
+    command: >
+      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+    network_mode: host

@@ -1,0 +1,33 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  data:
+    redis:
+      host: localhost
+      port: 9379
+      password: 3runner!23
+
+  datasource:
+    url: jdbc:mysql://localhost:9306/bookstore
+    username: root
+    password: 3runner!23
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 5
+      max-total: 20
+      max-idle: 20
+      min-idle: 5
+      test-on-borrow: true
+      validation-query: SELECT 1
+
+  rabbitmq:
+    host: localhost
+    port: 9672
+    username: 3runner
+    password: 3runner!23
+
+elasticsearch:
+  url: localhost:9200
+  key: #Q0I4SjQ1QUIyMlNic1BPbmdUVmU6YlRpV3RwSlFTMGFESjQxWnRXWlBiUQ==

@@ -1,0 +1,257 @@
+services:
+#--------------------------------
+#운영 Infra Container
+#--------------------------------
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_DATABASE=bookstore
+      - MYSQL_ROOT_PASSWORD=3runner!23
+    volumes:
+      - ./envs/mysql/data:/var/lib/mysql
+    ports:
+      - "9306:3306"
+    restart: always
+
+#  mysql-bookstore:
+#    container_name: mysql-bookstore
+#    image: mysql:8.0
+#    environment:
+#      - TZ=Asia/Seoul
+#      - MYSQL_DATABASE=bookstore
+#      - MYSQL_ROOT_PASSWORD=3runner!23
+#    volumes:
+#      - ./envs/mysql/bookstore/data:/var/lib/mysql
+#    ports:
+#      - "3308:3306"
+#    restart: always
+
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: always
+    ports:
+      - "9379:6379"
+    command: [ "redis-server", "--appendonly", "yes" , "--requirepass", "3runner!23" ]
+    volumes:
+      - ./envs/infra/redis/redis_data:/data
+
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    restart: always
+    ports:
+      - "15672:15672"  # RabbitMQ 관리 UI 포트
+      - "9672:5672"    # AMQP 기본 포트
+    environment:
+      - RABBITMQ_DEFAULT_USER=3runner
+      - RABBITMQ_DEFAULT_PASS=3runner!23
+      - TZ=Asia/Seoul
+    volumes:
+      - ./envs/infra/rabbitmq/data:/var/lib/rabbitmq
+      - ./envs/infra/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./envs/infra/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false         # 인증 비활성화 (개발용)
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m       # 메모리 설정 (필요에 따라 조정)
+      - TZ=Asia/Seoul
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - ./envs/infra/elasticsearch/data:/usr/share/elasticsearch/data
+    restart: always
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.4
+    container_name: kibana
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - TZ=Asia/Seoul
+    restart: always
+
+  #--------------------------------
+  #운영 Application Container
+  #--------------------------------
+#  app-bookstore1:
+#    image: openjdk:21
+#    container_name: app-bookstore1
+#    volumes:
+#      - ./script/bookstore1/config:/config
+#      - ./script/bookstore1/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - mysql
+#      - redis
+#      - rabbitmq
+#      - elasticsearch
+#      - kibana
+#    command: >
+#      bash -c "java -jar /app/bookstore.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#  app-bookstore2:
+#    image: openjdk:21
+#    container_name: app-bookstore2
+#    volumes:
+#      - ./script/bookstore2/config:/config
+#      - ./script/bookstore2/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - mysql
+#      - redis
+#      - rabbitmq
+#      - elasticsearch
+#      - kibana
+#    command: >
+#      bash -c "java -jar /app/bookstore.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#  app-coupon1:
+#    image: openjdk:21
+#    container_name: app-coupon1
+#    volumes:
+#      - ./script/coupon1/config:/config
+#      - ./script/coupon1/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - mysql
+#      - redis
+#      - rabbitmq
+#    command: >
+#      bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#  app-coupon2:
+#    image: openjdk:21
+#    container_name: app-coupon2
+#    volumes:
+#      - ./script/coupon2/config:/config
+#      - ./script/coupon2/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - mysql
+#      - redis
+#      - rabbitmq
+#    command: >
+#      bash -c "java -jar /app/coupon.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#  app-batch:
+#    image: openjdk:21
+#    container_name: app-batch
+#    volumes:
+#      - ./script/batch/config:/config
+#      - ./script/batch/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - mysql
+#      - redis
+#      - rabbitmq
+#    command: >
+#      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#  app-auth:
+#    image: openjdk:21
+#    container_name: app-auth
+#    volumes:
+#      - ./script/auth/config:/config
+#      - ./script/auth/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    command: >
+#      bash -c "java -jar /app/auth.jar --spring.profiles.active=dev"
+#    depends_on:
+#      - mysql
+#      - redis
+#      - rabbitmq
+#    network_mode: host
+#
+#  app-gateway:
+#    image: openjdk:21
+#    container_name: app-gateway
+#    volumes:
+#      - ./script/gateway/config:/config
+#      - ./script/gateway/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    command: >
+#      bash -c "java -jar /app/gateway.jar --spring.profiles.active=dev"
+#    depends_on:
+#      - mysql
+#      - redis
+#    network_mode: host
+#
+#  app-eureka:
+#    image: openjdk:21
+#    container_name: app-eureka
+#    volumes:
+#      - ./script/eureka/config:/config
+#      - ./script/eureka/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - redis
+#    command: >
+#      bash -c "java -jar /app/batch.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#
+#  app-front1:
+#    image: openjdk:21
+#    container_name: app-front1
+#    volumes:
+#      - ./script/front1/config:/config
+#      - ./script/front2/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - redis
+#      - rabbitmq
+#    command: >
+#      bash -c "java -jar /app/front.jar --spring.profiles.active=dev"
+#    network_mode: host
+#
+#  app-front2:
+#    image: openjdk:21
+#    container_name: app-front2
+#    volumes:
+#      - ./script/front1/config:/config
+#      - ./script/front2/app:/app
+#    working_dir: /app
+#    environment:
+#      - TZ=Asia/Seoul
+#    depends_on:
+#      - redis
+#      - rabbitmq
+#    command: >
+#      bash -c "java -jar /app/front.jar --spring.profiles.active=dev"
+#    network_mode: host

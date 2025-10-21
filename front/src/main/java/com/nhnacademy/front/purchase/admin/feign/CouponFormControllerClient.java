@@ -19,9 +19,13 @@ public interface CouponFormControllerClient {
 	ApiResponse<List<ReadCouponFormResponse>> readAllCouponForms();
 
 	@PostMapping("/coupon/forms")
-	ApiResponse<Long> createCouponForm(@RequestBody CreateCouponFormRequest createCouponFormRequest);
+	ApiResponse<Long> createCouponForm(
+			@RequestBody CreateCouponFormRequest createCouponFormRequest
+	);
 
 	@PostMapping("/coupon/forms/{quantity}")
-	ApiResponse<Void> createCouponFormWithMq(@RequestBody CreateCouponFormRequest createCouponFormRequest,
-		@PathVariable Long quantity);
+	ApiResponse<Void> createCouponFormWithMq(
+			@RequestBody CreateCouponFormRequest createCouponFormRequest,
+			@PathVariable("quantity") Long quantity
+	);
 }

@@ -18,6 +18,8 @@ public interface CouponMemberControllerClient {
 	ApiResponse<List<ReadMemberResponse>> getMembers();
 
 	@PostMapping("/bookstore/admin/coupons/{targetMemberId}")
-	ApiResponse<Long> createCoupon(@PathVariable Long targetMemberId,
-		@RequestBody CreateCouponFormRequest createCouponFormRequest);
+	ApiResponse<Long> createCoupon(
+			@PathVariable("targetMemberId") Long targetMemberId,
+			@RequestBody CreateCouponFormRequest createCouponFormRequest
+	);
 }

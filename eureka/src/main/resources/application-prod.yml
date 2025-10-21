@@ -2,6 +2,12 @@ spring:
   config:
     activate:
       on-profile: prod
+  data:
+    redis:
+      host: localhost
+      port: 9379
+      password: 3runner!23
+
 server:
   port: 8761
 

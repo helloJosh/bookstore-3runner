@@ -1,8 +1,7 @@
 package com.nhnacademy.batch.book.book.repository.impl;
 
-import com.nhnacademy.batch.batch.book.book.repository.BookCustomRepository;
-import com.nhnacademy.batch.batch.book.book.repository.impl.BookCustomRepositoryImpl;
-import com.nhnacademy.batch.batch.book.book.response.BookDocument;
+import com.nhnacademy.batch.book.book.repository.BookCustomRepository;
+import com.nhnacademy.batch.book.book.response.BookDocument;
 import com.nhnacademy.batch.entity.book.Book;
 import com.nhnacademy.batch.entity.bookimage.BookImage;
 import com.nhnacademy.batch.entity.bookimage.enums.BookImageType;

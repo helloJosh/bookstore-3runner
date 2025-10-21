@@ -1,0 +1,89 @@
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    expose:
+      - "8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    restart: always
+    networks:
+      - amberroad_server
+
+  dcgm-exporter:
+    image: nvidia/dcgm-exporter:3.1.8-3.2.0-b0-ubuntu20.04
+    container_name: dcgm-exporter
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - ./var/run/docker.sock:/var/run/docker.sock:ro
+    expose:
+      - "9400"
+    restart: always
+    networks:
+      - amberroad_server
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    pid: "host"
+    expose:
+      - "9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+    restart: always
+    networks:
+      - amberroad_server
+      
+  prometheus: 
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.external-url=http://localhost/prometheus'
+      - '--web.route-prefix=/prometheus'
+    expose:
+      - "9090"
+    restart: always
+    networks:
+      - amberroad_server
+      
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/
+    expose:
+      - "3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=mois
+      - GF_SECURITY_ADMIN_PASSWORD=mois!23
+      - GF_SERVER_ROOT_URL=http://dev.amberroad.ai/grafana
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+    restart: always
+    networks:
+      - amberroad_server
+
+networks:
+  amberroad_server:
+    name: amberroad_server
+    driver: bridge
+    external: true

@@ -1,7 +1,7 @@
 package com.nhnacademy.bookstore.global.config;
 
 import com.nhnacademy.bookstore.global.config.properties.RabbitMqProperties;
-import com.nhnacademy.bookstore.purchase.coupon.messageListener.CouponAnotherMessageListener;
+import com.nhnacademy.bookstore.purchase.consumer.CouponAnotherMessageListener;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Binding;

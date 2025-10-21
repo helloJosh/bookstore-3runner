@@ -16,19 +16,26 @@ public interface PurchaseMemberControllerClient {
 
 	@GetMapping("/bookstore/members/purchases/{purchaseId}")
 	ApiResponse<ReadPurchaseResponse> readPurchase(
-		@PathVariable(value = "purchaseId", required = false) Long purchaseId);
+		@PathVariable(value = "purchaseId", required = false) Long purchaseId
+	);
 
 	@GetMapping("/bookstore/members/purchases")
 	ApiResponse<List<ReadPurchaseResponse>> readPurchases();
 
 	@PostMapping("/bookstore/members/purchases")
-	ApiResponse<Void> createPurchase(@Valid @RequestBody CreatePurchaseRequest createPurchaseRequest);
+	ApiResponse<Void> createPurchase(
+			@Valid @RequestBody CreatePurchaseRequest createPurchaseRequest
+	);
 
 	@PutMapping("/bookstore/members/purchases/{purchaseId}")
-	ApiResponse<Void> updatePurchaseStatus(@Valid @RequestBody UpdatePurchaseMemberRequest updatePurchaseRequest,
-		@PathVariable Long purchaseId);
+	ApiResponse<Void> updatePurchaseStatus(
+			@Valid @RequestBody UpdatePurchaseMemberRequest updatePurchaseRequest,
+			@PathVariable("purchaseId") Long purchaseId
+	);
 
 	@DeleteMapping("/bookstore/members/purchases/{purchaseId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	ApiResponse<Void> deletePurchases(@PathVariable Long purchaseId);
+	ApiResponse<Void> deletePurchases(
+			@PathVariable("purchaseId") Long purchaseId
+	);
 }

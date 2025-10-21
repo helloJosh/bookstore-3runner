@@ -1,0 +1,33 @@
+server:
+  port: 8083
+  shutdown: graceful
+
+spring:
+  profiles:
+    active: local
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  application:
+    name: 3runner-coupon
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        highlight_sql: true
+        auto_quote_keyword: true
+
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
+    org.springframework.transaction.interceptor: trace
+
+springdoc:
+  swagger-ui:
+    url: /docs/openapi-3.0.json
+    path: /coupon/docs/swagger

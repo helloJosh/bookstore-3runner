@@ -20,8 +20,12 @@ public interface SecurityLoginAdapter {
 	 * @return the api response
 	 */
 	@PostMapping("/token/login/{token}")
-	ApiResponse<MemberAuthResponse> memberLogin(@PathVariable String token);
+	ApiResponse<MemberAuthResponse> memberLogin(
+			@PathVariable("token") String token
+	);
 
 	@PostMapping("/login")
-	ApiResponse<MemberAuthResponse> memberLoginId(@RequestBody MemberAuthRequest memberAuthRequest);
+	ApiResponse<MemberAuthResponse> memberLoginId(
+			@RequestBody MemberAuthRequest memberAuthRequest
+	);
 }

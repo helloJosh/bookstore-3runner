@@ -21,7 +21,7 @@ import com.nhnacademy.bookstore.entity.bookimage.enums.BookImageType;
 import com.nhnacademy.bookstore.entity.booklike.QBookLike;
 import com.nhnacademy.bookstore.entity.category.QCategory;
 import com.nhnacademy.bookstore.entity.totalimage.QTotalImage;
-import com.nhnacademy.bookstore.purchase.purchasebook.exception.NotExistsBook;
+import com.nhnacademy.bookstore.purchase.exception.NotExistsBook;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Projections;

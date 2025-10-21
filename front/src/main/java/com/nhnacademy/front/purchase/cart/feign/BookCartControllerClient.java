@@ -16,7 +16,9 @@ import java.util.List;
 @FeignClient(name = "bookCartControllerClient", url = "${feign.client.url}", configuration = FeignConfiguration.class)
 public interface BookCartControllerClient {
 	@GetMapping("/bookstore/carts/{cartId}")
-	ApiResponse<List<ReadBookCartGuestResponse>> readCart(@PathVariable("cartId") Long cartId);
+	ApiResponse<List<ReadBookCartGuestResponse>> readCart(
+			@PathVariable("cartId") Long cartId
+	);
 
 	@GetMapping("/bookstore/carts")
 	ApiResponse<List<ReadAllBookCartMemberResponse>> readAllBookCartMember();
@@ -32,11 +34,15 @@ public interface BookCartControllerClient {
 	);
 
 	@DeleteMapping("/bookstore/carts")
-	ApiResponse<Long> deleteCart(@Valid @RequestBody DeleteBookCartRequest deleteBookCartGuestRequest);
+	ApiResponse<Long> deleteCart(
+			@Valid @RequestBody DeleteBookCartRequest deleteBookCartGuestRequest
+	);
 
 	@PostMapping("/bookstore/guests/carts")
 	ApiResponse<Long> createGuestCart();
 
 	@DeleteMapping("/bookstore/carts/{cartId}")
-	ApiResponse<Long> deleteAllCart(@PathVariable(required = false) Long cartId);
+	ApiResponse<Long> deleteAllCart(
+			@PathVariable(value = "cartId", required = false) Long cartId
+	);
 }
